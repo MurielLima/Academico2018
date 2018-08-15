@@ -1,14 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
-public class Professor {
- 
-    @Id
+/**
+ *
+ * @author Muriel
+ */
+public class Aluno {
+       @Id
     private String id;
     
     private String nome;
@@ -20,17 +26,17 @@ public class Professor {
     @DBRef
     private Cidade cidade;
 
-    public Professor() {
+    public Aluno() {
     }
 
-    public Professor(String nome, String email, String cpf, Cidade cidade) {
+    public Aluno(String nome, String email, String cpf, Cidade cidade) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.cidade = cidade;
     }
 
-    public Professor(String nome, String email, String cpf) {
+    public Aluno(String nome, String email, String cpf) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
@@ -71,7 +77,7 @@ public class Professor {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 53 * hash + (this.id != null ? this.id.hashCode() : 0);
+        hash = 47 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
     }
 
@@ -86,17 +92,18 @@ public class Professor {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Professor other = (Professor) obj;
+        final Aluno other = (Aluno) obj;
         if ((this.id == null) ? (other.id != null) : !this.id.equals(other.id)) {
             return false;
         }
         return true;
     }
 
+   
+
     @Override
     public String toString() {
         return "Professor{" + getNome() + '}';
     }
-    
     
 }
