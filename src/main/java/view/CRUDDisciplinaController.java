@@ -21,6 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Professor;
+import model.Disciplina;
 import org.springframework.data.domain.Sort;
 
 /**
@@ -34,6 +35,7 @@ public class CRUDDisciplinaController implements Initializable {
      * Initializes the controller class.
      */
     private DisciplinaController controllerPai;
+
 
     @FXML
     private TextField txtFldCodigo;
@@ -52,8 +54,8 @@ public class CRUDDisciplinaController implements Initializable {
 
     @FXML
     private void btnCancelaClick() {
-//        anchorPane.getScene().getWindow().hide();
-//        controllerPai.tblView.requestFocus();
+        anchorPane.getScene().getWindow().hide();
+        controllerPai.tblView.requestFocus();
     }
 
     @FXML
@@ -105,19 +107,19 @@ public class CRUDDisciplinaController implements Initializable {
     }
 
     public void setCadastroController(DisciplinaController controllerPai) {
-//        this.controllerPai = controllerPai;
-//        txtFldCodigo.setText(controllerPai.disciplina.getCodigo());
-//        txtFldNome.setText(controllerPai.disciplina.getNome());
-//
+        this.controllerPai = controllerPai;
+        txtFldCodigo.setText(controllerPai.disciplina.getCodigo());
+        txtFldNome.setText(controllerPai.disciplina.getNome());
+
 //        cmbProfessor.setItems(FXCollections.observableList(
 //                professorRepository.findAll(new Sort(new Sort.Order("nome")))));
 //
 //        if (controllerPai.acao != INCLUIR) {
 //            cmbProfessor.getSelectionModel().select(controllerPai.disciplina.getProfessor());
 //        }
-//
-//        txtFldCodigo.setDisable(controllerPai.acao == EXCLUIR);
-//        txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
+
+        txtFldCodigo.setDisable(controllerPai.acao == EXCLUIR);
+        txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
 
     }
 

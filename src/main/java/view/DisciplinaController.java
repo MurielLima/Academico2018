@@ -6,6 +6,8 @@
 package view;
 
 import static config.Config.INCLUIR;
+import static config.Config.ALTERAR;
+import static config.Config.EXCLUIR;
 import static config.DAO.disciplinaRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
@@ -29,18 +31,40 @@ public class DisciplinaController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private TableView tblView;
+    public TableView tblView;
     public char acao;
-    private Disciplina disciplina;
+    public Disciplina disciplina;
     @FXML 
     private MaterialDesignIconView btnIncluir;
+    @FXML 
+    private MaterialDesignIconView btnAlterar;
+    @FXML 
+    private MaterialDesignIconView btnExcluir;
     @FXML 
     private void acIncluir(){
         acao = INCLUIR;
         disciplina = new Disciplina();
+
+    showCRUD();
+
+    }
+    private void showCRUD(){
         String cena =   "/fxml/CRUDDisciplina.fxml";
         XPopOver popOver    =   null;
-        popOver = new XPopOver(cena,"Inclusão de Disciplina", btnIncluir);
+        
+        switch(acao){
+            case INCLUIR    :
+                popOver = new XPopOver(cena,"Inclusão de Disciplina", btnIncluir);    
+                break;
+            case ALTERAR    :   
+                popOver = new XPopOver(cena,"Inclusão de Disciplina", btnAlterar);    
+                break;
+                case EXCLUIR   :   
+                popOver = new XPopOver(cena,"Inclusão de Disciplina", btnExcluir);    
+                break;
+        }
+        CRUDDisciplinaController controllerFilho    =   popOver.getLoader().getController();
+        controllerFilho.setCadastroController(this);
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
