@@ -1,15 +1,16 @@
+package view;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
 
 import static config.Config.ALTERAR;
 import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
-import static config.DAO.disciplinaRepository;
 import static config.DAO.professorRepository;
+import static config.DAO.cidadeRepository;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -20,21 +21,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.Professor;
-import model.Disciplina;
+
+import model.Cidade;
 import org.springframework.data.domain.Sort;
 
 /**
  * FXML Controller class
  *
- * @author idomar
+ * @author Muriel
  */
-public class CRUDDisciplinaController implements Initializable {
+public class CRUDProfessorController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
-    private DisciplinaController controllerPai;
+    private ProfessorController controllerPai;
 
 
     @FXML
@@ -50,7 +51,7 @@ public class CRUDDisciplinaController implements Initializable {
     private Button btnConfirma;
 
     @FXML
-    private ComboBox cmbProfessor;
+    private ComboBox cmbCidade;
 
     @FXML
     private void btnCancelaClick() {
@@ -60,27 +61,27 @@ public class CRUDDisciplinaController implements Initializable {
 
     @FXML
     private void btnConfirmaClick() {
-        controllerPai.disciplina.setCodigo(txtFldCodigo.getText());
-        controllerPai.disciplina.setNome(txtFldNome.getText());
-        controllerPai.disciplina.setProfessor((Professor) cmbProfessor.getSelectionModel().getSelectedItem());
+        controllerPai.professor.setCpf(txtFldCodigo.getText());
+        controllerPai.professor.setNome(txtFldNome.getText());
+        controllerPai.professor.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
         try {
             switch (controllerPai.acao) {
                 case INCLUIR:
-                    disciplinaRepository.insert(controllerPai.disciplina);
+                    professorRepository.insert(controllerPai.professor);
                     break;
                 case ALTERAR:
-                    disciplinaRepository.save(controllerPai.disciplina);
+                    professorRepository.save(controllerPai.professor);
                     break;
                 case EXCLUIR:
-                    disciplinaRepository.delete(controllerPai.disciplina);
+                    professorRepository.delete(controllerPai.professor);
                     break;
             }
             controllerPai.tblView.setItems(
-                    FXCollections.observableList(disciplinaRepository.findAll(
+                    FXCollections.observableList(professorRepository.findAll(
                             new Sort(new Sort.Order("nome")))));
             controllerPai.tblView.refresh();
             controllerPai.tblView.getSelectionModel().clearSelection();
-            controllerPai.tblView.getSelectionModel().select(controllerPai.disciplina);
+            controllerPai.tblView.getSelectionModel().select(controllerPai.professor);
             anchorPane.getScene().getWindow().hide();
 //
         } catch (Exception e) {
@@ -106,16 +107,16 @@ public class CRUDDisciplinaController implements Initializable {
 
     }
 
-    public void setCadastroController(DisciplinaController controllerPai) {
+    public void setCadastroController(ProfessorController controllerPai) {
         this.controllerPai = controllerPai;
-        txtFldCodigo.setText(controllerPai.disciplina.getCodigo());
-        txtFldNome.setText(controllerPai.disciplina.getNome());
+        txtFldCodigo.setText(controllerPai.professor.getCpf());
+        txtFldNome.setText(controllerPai.professor.getNome());
 
-        cmbProfessor.setItems(FXCollections.observableList(
-                professorRepository.findAll(new Sort(new Sort.Order("nome")))));
+        cmbCidade.setItems(FXCollections.observableList(
+                cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
 
         if (controllerPai.acao != INCLUIR) {
-            cmbProfessor.getSelectionModel().select(controllerPai.disciplina.getProfessor());
+            cmbCidade.getSelectionModel().select(controllerPai.professor.getCidade());
         }
 
         txtFldCodigo.setDisable(controllerPai.acao == EXCLUIR);

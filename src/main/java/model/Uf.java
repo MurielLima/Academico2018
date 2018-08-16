@@ -72,6 +72,11 @@ public class Uf {
     public void setSigla(String sigla) {
         this.sigla = sigla;
     }
+
+    @Override
+    public String toString() {
+        return  nome ;
+    }
     
     
 }

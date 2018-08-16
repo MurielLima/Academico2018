@@ -31,45 +31,61 @@ public class DisciplinaController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    public TableView tblView;
+    public TableView<Disciplina> tblView;
     public char acao;
     public Disciplina disciplina;
-    @FXML 
+    @FXML
     private MaterialDesignIconView btnIncluir;
-    @FXML 
+    @FXML
     private MaterialDesignIconView btnAlterar;
-    @FXML 
+    @FXML
     private MaterialDesignIconView btnExcluir;
-    @FXML 
-    private void acIncluir(){
+
+    @FXML
+    private void acIncluir() {
         acao = INCLUIR;
         disciplina = new Disciplina();
 
-    showCRUD();
+        showCRUD();
 
     }
-    private void showCRUD(){
-        String cena =   "/fxml/CRUDDisciplina.fxml";
-        XPopOver popOver    =   null;
-        
-        switch(acao){
-            case INCLUIR    :
-                popOver = new XPopOver(cena,"Inclusão de Disciplina", btnIncluir);    
+
+    @FXML
+    private void acAlterar() {
+        acao = ALTERAR;
+        disciplina = tblView.getSelectionModel().getSelectedItem();
+        showCRUD();
+    }
+    @FXML
+    private void acExcluir() {
+        acao = EXCLUIR;
+        disciplina = tblView.getSelectionModel().getSelectedItem();
+        showCRUD();
+    }
+
+    private void showCRUD() {
+        String cena = "/fxml/CRUDDisciplina.fxml";
+        XPopOver popOver = null;
+
+        switch (acao) {
+            case INCLUIR:
+                popOver = new XPopOver(cena, "Inclusão de Disciplina", btnIncluir);
                 break;
-            case ALTERAR    :   
-                popOver = new XPopOver(cena,"Inclusão de Disciplina", btnAlterar);    
+            case ALTERAR:
+                popOver = new XPopOver(cena, "Inclusão de Disciplina", btnAlterar);
                 break;
-                case EXCLUIR   :   
-                popOver = new XPopOver(cena,"Inclusão de Disciplina", btnExcluir);    
+            case EXCLUIR:
+                popOver = new XPopOver(cena, "Inclusão de Disciplina", btnExcluir);
                 break;
         }
-        CRUDDisciplinaController controllerFilho    =   popOver.getLoader().getController();
+        CRUDDisciplinaController controllerFilho = popOver.getLoader().getController();
         controllerFilho.setCadastroController(this);
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         tblView.setItems(
-        FXCollections.observableList(disciplinaRepository.findAll(new Sort(new Sort.Order("nome")))));
-    }    
-    
+                FXCollections.observableList(disciplinaRepository.findAll(new Sort(new Sort.Order("nome")))));
+    }
+
 }

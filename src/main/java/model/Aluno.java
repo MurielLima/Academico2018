@@ -103,7 +103,7 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Professor{" + getNome() + '}';
+        return  getNome();
     }
     
 }

@@ -95,7 +95,7 @@ public class Professor {
 
     @Override
     public String toString() {
-        return "Professor{" + getNome() + '}';
+        return nome;
     }
     
     

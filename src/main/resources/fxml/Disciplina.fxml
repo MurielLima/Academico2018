@@ -18,8 +18,8 @@
             <HBox spacing="5.0">
                 <children>
                     <MaterialDesignIconView fx:id="btnIncluir" glyphName="PLUS" onMouseClicked="#acIncluir" size="1.3em"   />
-                    <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL" size="1.3em" />
-                    <MaterialDesignIconView fx:id="btnExcluir" glyphName="DELETE" size="1.3em" />
+                    <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL" onMouseClicked="#acAlterar" size="1.3em" />
+                    <MaterialDesignIconView fx:id="btnExcluir" glyphName="DELETE" onMouseClicked="#acExcluir" size="1.3em" />
                 </children>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

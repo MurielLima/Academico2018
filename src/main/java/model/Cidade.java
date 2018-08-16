@@ -71,6 +71,11 @@ public class Cidade {
     public void setUf(Uf uf) {
         this.uf = uf;
     }
+
+    @Override
+    public String toString() {
+        return  nome ;
+    }
     
     
 }
