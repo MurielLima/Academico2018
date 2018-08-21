@@ -56,14 +56,18 @@ public class ProfessorController implements Initializable {
     @FXML
     private void acAlterar() {
         acao = ALTERAR;
-        professor = tblView.getSelectionModel().getSelectedItem();
-        showCRUD();
+        if(tblView.getSelectionModel().getSelectedItem()!=null){
+            professor = tblView.getSelectionModel().getSelectedItem();
+            showCRUD();
+        }
     }
     @FXML
     private void acExcluir() {
         acao = EXCLUIR;
-        professor = tblView.getSelectionModel().getSelectedItem();
-        showCRUD();
+        if(tblView.getSelectionModel().getSelectedItem()!=null){
+            professor = tblView.getSelectionModel().getSelectedItem();
+            showCRUD();
+        }
     }
 
     private void showCRUD() {
