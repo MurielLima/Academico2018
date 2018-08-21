@@ -47,7 +47,14 @@ public class Disciplina {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
-
+    public String getPrimeiroNome(){
+        if(professor!=null){
+           String[] array = professor.getNome().split(" ");
+           return array[0];
+        }else{
+            return "";
+        }
+    }
     public String getCodigo() {
         return codigo;
     }
