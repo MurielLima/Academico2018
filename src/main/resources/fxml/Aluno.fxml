@@ -44,6 +44,14 @@
                 </cellValueFactory>
                 </TableColumn>
               </columns>
+                <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem fx:id="mnAlterar" mnemonicParsing="false" onAction="#acAlterar" text="Alterar" />
+                      <MenuItem fx:id="mnExcluir" mnemonicParsing="false" onAction="#acExcluir" text="Excluir" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
             </TableView>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>

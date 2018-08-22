@@ -18,6 +18,7 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Aluno;
@@ -49,7 +50,10 @@ public class AlunoController implements Initializable {
     private TextField txtFldPesquisar;
     @FXML
     private MaterialDesignIconView btnPesquisar;
-
+   @FXML
+    private MenuItem mnAlterar;
+    @FXML
+    private MenuItem mnExcluir;
     @FXML
     private void acIncluir() {
         acao = INCLUIR;
@@ -113,6 +117,9 @@ public class AlunoController implements Initializable {
         btnAlterar.visibleProperty().bind(
                 Bindings.isEmpty((tblView.getSelectionModel().getSelectedItems())).not());
         btnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
+        mnAlterar.visibleProperty().bind(btnAlterar.visibleProperty());
+        mnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
+                
     }
 
 }
