@@ -67,7 +67,7 @@ public class Professor {
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 5;

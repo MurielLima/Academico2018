@@ -1,16 +1,15 @@
-package view;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package view;
 
 import static config.Config.ALTERAR;
 import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
-import static config.DAO.professorRepository;
 import static config.DAO.cidadeRepository;
+import static config.DAO.alunoRepository;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -21,21 +20,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-
 import model.Cidade;
 import org.springframework.data.domain.Sort;
 
 /**
- * FXML Controller class
  *
  * @author Muriel
  */
-public class CRUDProfessorController implements Initializable {
-
-    /**
+public class CRUDAlunoController implements Initializable{
+        /**
      * Initializes the controller class.
      */
-    private ProfessorController controllerPai;
+    private AlunoController controllerPai;
 
 
     @FXML
@@ -61,27 +57,27 @@ public class CRUDProfessorController implements Initializable {
 
     @FXML
     private void btnConfirmaClick() {
-        controllerPai.professor.setCpf(txtFldCodigo.getText());
-        controllerPai.professor.setNome(txtFldNome.getText());
-        controllerPai.professor.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
+        controllerPai.aluno.setCpf(txtFldCodigo.getText());
+        controllerPai.aluno.setNome(txtFldNome.getText());
+        controllerPai.aluno.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
         try {
             switch (controllerPai.acao) {
                 case INCLUIR:
-                    professorRepository.insert(controllerPai.professor);
+                    alunoRepository.insert(controllerPai.aluno);
                     break;
                 case ALTERAR:
-                    professorRepository.save(controllerPai.professor);
+                    alunoRepository.save(controllerPai.aluno);
                     break;
                 case EXCLUIR:
-                    professorRepository.delete(controllerPai.professor);
+                    alunoRepository.delete(controllerPai.aluno);
                     break;
             }
             controllerPai.tblView.setItems(
-                    FXCollections.observableList(professorRepository.findAll(
+                    FXCollections.observableList(alunoRepository.findAll(
                             new Sort(new Sort.Order("nome")))));
             controllerPai.tblView.refresh();
             controllerPai.tblView.getSelectionModel().clearSelection();
-            controllerPai.tblView.getSelectionModel().select(controllerPai.professor);
+            controllerPai.tblView.getSelectionModel().select(controllerPai.aluno);
             anchorPane.getScene().getWindow().hide();
 //
         } catch (Exception e) {
@@ -106,21 +102,20 @@ public class CRUDProfessorController implements Initializable {
         
     }
 
-    public void setCadastroController(ProfessorController controllerPai) {
+    public void setCadastroController(AlunoController controllerPai) {
         this.controllerPai = controllerPai;
-        txtFldCodigo.setText(controllerPai.professor.getCpf());
-        txtFldNome.setText(controllerPai.professor.getNome());
+        txtFldCodigo.setText(controllerPai.aluno.getCpf());
+        txtFldNome.setText(controllerPai.aluno.getNome());
 
         cmbCidade.setItems(FXCollections.observableList(
                 cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
 
         if (controllerPai.acao != INCLUIR) {
-            cmbCidade.getSelectionModel().select(controllerPai.professor.getCidade());
+            cmbCidade.getSelectionModel().select(controllerPai.aluno.getCidade());
         }
 
         txtFldCodigo.setDisable(controllerPai.acao == EXCLUIR);
         txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
 
     }
-
 }

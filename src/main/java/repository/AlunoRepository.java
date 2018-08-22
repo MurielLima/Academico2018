@@ -5,6 +5,7 @@
  */
 package repository;
 
+import java.util.List;
 import model.Aluno;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -13,5 +14,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author Muriel
  */
 public interface AlunoRepository extends MongoRepository<Aluno, String>{
-    
+    public List<Aluno> findByNomeLikeIgnoreCase(String nome);
 }

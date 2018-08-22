@@ -12,10 +12,12 @@ import static config.DAO.disciplinaRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import model.Disciplina;
 import org.springframework.data.domain.Sort;
 import utility.XPopOver;
@@ -40,6 +42,11 @@ public class DisciplinaController implements Initializable {
     private MaterialDesignIconView btnAlterar;
     @FXML
     private MaterialDesignIconView btnExcluir;
+    @FXML
+    private TextField txtFldPesquisar;
+    @FXML
+    private MaterialDesignIconView btnPesquisar;
+
 
     @FXML
     private void acIncluir() {
@@ -62,7 +69,16 @@ public class DisciplinaController implements Initializable {
         disciplina = tblView.getSelectionModel().getSelectedItem();
         showCRUD();
     }
-
+    @FXML
+    private void acPesquisar(){
+        
+       tblView.setItems(FXCollections.observableList(
+                disciplinaRepository.findByNomeLikeIgnoreCase(txtFldPesquisar.getText())));
+    }
+    @FXML
+    private void acLimpar(){
+        txtFldPesquisar.setText("");
+    }
     private void showCRUD() {
         String cena = "/fxml/CRUDDisciplina.fxml";
         XPopOver popOver = null;
@@ -72,10 +88,10 @@ public class DisciplinaController implements Initializable {
                 popOver = new XPopOver(cena, "Inclusão de Disciplina", btnIncluir);
                 break;
             case ALTERAR:
-                popOver = new XPopOver(cena, "Inclusão de Disciplina", btnAlterar);
+                popOver = new XPopOver(cena, "Alteração de Disciplina", btnAlterar);
                 break;
             case EXCLUIR:
-                popOver = new XPopOver(cena, "Inclusão de Disciplina", btnExcluir);
+                popOver = new XPopOver(cena, "Exclusão de Disciplina", btnExcluir);
                 break;
         }
         CRUDDisciplinaController controllerFilho = popOver.getLoader().getController();
@@ -86,6 +102,9 @@ public class DisciplinaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         tblView.setItems(
                 FXCollections.observableList(disciplinaRepository.findAll(new Sort(new Sort.Order("nome")))));
+        btnAlterar.visibleProperty().bind(
+                Bindings.isEmpty((tblView.getSelectionModel().getSelectedItems())).not());
+        btnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
     }
 
 }

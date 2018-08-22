@@ -17,10 +17,16 @@
          <children>
             <HBox spacing="5.0">
                 <children>
-                    <MaterialDesignIconView fx:id="btnIncluir" glyphName="PLUS" size="1.3em" />
-                    <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL" size="1.3em" />
-                    <MaterialDesignIconView fx:id="btnExcluir" glyphName="DELETE" size="1.3em" />
-                </children>
+                    <MaterialDesignIconView fx:id="btnIncluir" glyphName="PLUS" onMouseClicked="#acIncluir" size="1.3em" />
+                    <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL" onMouseClicked="#acAlterar" size="1.3em" />
+                    <MaterialDesignIconView fx:id="btnExcluir" glyphName="DELETE" onMouseClicked="#acExcluir" size="1.3em" />
+                <TextField fx:id="txtFldPesquisar">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin></TextField>
+                      <MaterialDesignIconView fx:id="btnPesquisar" glyphName="MAGNIFY" onMouseClicked="#acPesquisar" size="1.3em" />
+                      <MaterialDesignIconView fx:id="btnLimpar" glyphName="BROOM" onMouseClicked="#acLimpar" size="1.3em" />
+                  </children>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>    
