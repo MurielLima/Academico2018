@@ -10,18 +10,24 @@ import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
 import static config.DAO.cidadeRepository;
 import static config.DAO.alunoRepository;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import model.Aluno;
 import model.Cidade;
 import org.springframework.data.domain.Sort;
+import utility.XPopOver;
 
 /**
  *
@@ -39,6 +45,8 @@ public class CRUDAlunoController implements Initializable{
 
     @FXML
     private TextField txtFldNome;
+    @FXML
+    private TextField txtFldEmail;
 
     @FXML
     private AnchorPane anchorPane;
@@ -47,8 +55,55 @@ public class CRUDAlunoController implements Initializable{
     private Button btnConfirma;
 
     @FXML
-    private ComboBox cmbCidade;
+    public ComboBox cmbCidade;
+    
+    public char acao;
+    public Cidade cidade;
+    @FXML
+    private MaterialDesignIconView btnIncluir;
+    @FXML
+    private MaterialDesignIconView btnAlterar;
+    @FXML
+    private MaterialDesignIconView btnExcluir;
+    @FXML
+    private TextField txtFldPesquisar;
+    @FXML
+    private MaterialDesignIconView btnPesquisar;
+    @FXML
+    private MenuItem mnAlterar;
+    @FXML
+    private MenuItem mnExcluir;
 
+    @FXML
+    private void acIncluir() {
+        acao = INCLUIR;
+        cidade = new Cidade();
+        showCRUD();
+
+    }
+
+    @FXML
+    private void acAlterar() {
+        acao = ALTERAR;
+        cidade = (Cidade) cmbCidade.getSelectionModel().getSelectedItem();
+        showCRUD();
+
+    }
+     private void showCRUD() {
+        String cena = "/fxml/CRUDCidade.fxml";
+        XPopOver popOver = null;
+
+        switch (acao) {
+            case INCLUIR:
+                popOver = new XPopOver(cena, "Inclusão de Cidade", btnIncluir);
+                break;
+            case ALTERAR:
+                popOver = new XPopOver(cena, "Alteração de Cidade", btnAlterar);
+                break;
+        }
+        CRUDCidadeAlunoController controllerFilho = popOver.getLoader().getController();
+        controllerFilho.setCadastroController(this);
+    }
     @FXML
     private void btnCancelaClick() {
         anchorPane.getScene().getWindow().hide();
@@ -60,6 +115,7 @@ public class CRUDAlunoController implements Initializable{
         controllerPai.aluno.setCpf(txtFldCodigo.getText());
         controllerPai.aluno.setNome(txtFldNome.getText());
         controllerPai.aluno.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
+        controllerPai.aluno.setEmail(txtFldEmail.getText());
         try {
             switch (controllerPai.acao) {
                 case INCLUIR:
@@ -99,13 +155,15 @@ public class CRUDAlunoController implements Initializable{
     public void initialize(URL url, ResourceBundle rb) {
         btnConfirma.disableProperty().bind(txtFldCodigo.textProperty().isEmpty().
                 or(txtFldNome.textProperty().isEmpty()));
-        
+        btnAlterar.visibleProperty().bind(cmbCidade.getSelectionModel().selectedItemProperty().isNotNull());
+     
     }
 
     public void setCadastroController(AlunoController controllerPai) {
         this.controllerPai = controllerPai;
         txtFldCodigo.setText(controllerPai.aluno.getCpf());
         txtFldNome.setText(controllerPai.aluno.getNome());
+        txtFldEmail.setText(controllerPai.aluno.getEmail());
 
         cmbCidade.setItems(FXCollections.observableList(
                 cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
@@ -116,6 +174,8 @@ public class CRUDAlunoController implements Initializable{
 
         txtFldCodigo.setDisable(controllerPai.acao == EXCLUIR);
         txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
+        txtFldEmail.setDisable(controllerPai.acao == EXCLUIR);
 
     }
+
 }

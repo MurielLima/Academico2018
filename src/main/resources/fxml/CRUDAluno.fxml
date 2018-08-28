@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.materialdesignicons.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CRUDAlunoController">
 
@@ -31,6 +31,7 @@
                         <Label text="Nome" />
                         <TextField fx:id="txtFldNome" prefHeight="25.0" prefWidth="330.0" />
                      </children>
+
                      <HBox.margin>
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
@@ -38,11 +39,23 @@
                   <VBox spacing="5.0" />
                </children>
             </HBox>
+           <VBox spacing="5.0">
+               <children>
+                  <Label text="Email" />
+                  <TextField fx:id="txtFldEmail" prefHeight="25.0" prefWidth="330.0" />
+               </children>
+            </VBox>
             <HBox alignment="BOTTOM_CENTER" spacing="5.0">
                <children>
                   <VBox>
                      <children>
-                        <Label text="Cidade" />
+                        <HBox>
+                           <children>
+                              <Label text="Cidade" />
+                              <MaterialDesignIconView fx:id="btnIncluir" glyphName="PLUS" onMouseClicked="#acIncluir" size="1.3em" />
+                              <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL"  onMouseClicked="#acAlterar" size="1.3em" />
+                           </children>
+                        </HBox>
                         <ComboBox fx:id="cmbCidade" prefWidth="200.0" />
                      </children>
                   </VBox>

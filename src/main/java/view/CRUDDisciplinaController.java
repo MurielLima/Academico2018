@@ -36,7 +36,6 @@ public class CRUDDisciplinaController implements Initializable {
      */
     private DisciplinaController controllerPai;
 
-
     @FXML
     private TextField txtFldCodigo;
 
@@ -82,9 +81,7 @@ public class CRUDDisciplinaController implements Initializable {
             controllerPai.tblView.getSelectionModel().clearSelection();
             controllerPai.tblView.getSelectionModel().select(controllerPai.disciplina);
             anchorPane.getScene().getWindow().hide();
-//
         } catch (Exception e) {
-
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Cadastro de Disciplina");

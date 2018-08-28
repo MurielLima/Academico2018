@@ -9,7 +9,6 @@ import static config.Config.ALTERAR;
 import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
 import static config.DAO.professorRepository;
-import static config.DAO.professorRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,7 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import model.Disciplina;
 import model.Professor;
 import org.springframework.data.domain.Sort;
 import utility.XPopOver;
@@ -46,6 +44,8 @@ public class ProfessorController implements Initializable {
     @FXML
     private MaterialDesignIconView btnExcluir;
     @FXML
+    private MaterialDesignIconView btnDisciplinas;
+    @FXML
     private TextField txtFldPesquisar;
     @FXML
     private MaterialDesignIconView btnPesquisar;
@@ -53,6 +53,9 @@ public class ProfessorController implements Initializable {
     private MenuItem mnAlterar;
     @FXML
     private MenuItem mnExcluir;
+    @FXML
+    private MenuItem mnDisciplinas;
+
     @FXML
     private void acIncluir() {
         acao = INCLUIR;
@@ -90,6 +93,19 @@ public class ProfessorController implements Initializable {
     @FXML
     private void acLimpar() {
         txtFldPesquisar.setText("");
+        tblView.setItems(
+                FXCollections.observableList(professorRepository.findAll(new Sort(new Sort.Order("nome")))));
+    }
+
+    @FXML
+    private void acDisciplinas() {
+        professor = tblView.getSelectionModel().getSelectedItem();
+
+        String cena = "/fxml/CRUDProfessorDisciplina.fxml";
+        XPopOver popOver;
+        popOver = new XPopOver(cena, "Lista de disciplinas", btnDisciplinas);
+        CRUDProfessorDisciplinaController controllerFilho = popOver.getLoader().getController();
+        controllerFilho.setCadastroController(this);
     }
 
     private void showCRUD() {
@@ -118,9 +134,11 @@ public class ProfessorController implements Initializable {
         btnAlterar.visibleProperty().bind(
                 Bindings.isEmpty((tblView.getSelectionModel().getSelectedItems())).not());
         btnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
+        btnDisciplinas.visibleProperty().bind(btnAlterar.visibleProperty());
         mnAlterar.visibleProperty().bind(btnAlterar.visibleProperty());
         mnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
-                
+        mnDisciplinas.visibleProperty().bind(btnAlterar.visibleProperty());
+        btnPesquisar.disableProperty().bind(txtFldPesquisar.textProperty().isEmpty());
     }
 
 }

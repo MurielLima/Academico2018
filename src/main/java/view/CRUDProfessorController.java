@@ -5,12 +5,12 @@ package view;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import static config.Config.ALTERAR;
 import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
 import static config.DAO.professorRepository;
 import static config.DAO.cidadeRepository;
+import static config.DAO.disciplinaRepository;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -36,13 +36,15 @@ public class CRUDProfessorController implements Initializable {
      * Initializes the controller class.
      */
     private ProfessorController controllerPai;
-
-
+    public Cidade cidade;
+    public char acao;
     @FXML
     private TextField txtFldCodigo;
 
     @FXML
     private TextField txtFldNome;
+    @FXML
+    private TextField txtFldEmail;
 
     @FXML
     private AnchorPane anchorPane;
@@ -52,7 +54,7 @@ public class CRUDProfessorController implements Initializable {
 
     @FXML
     private ComboBox cmbCidade;
-
+    
     @FXML
     private void btnCancelaClick() {
         anchorPane.getScene().getWindow().hide();
@@ -64,6 +66,7 @@ public class CRUDProfessorController implements Initializable {
         controllerPai.professor.setCpf(txtFldCodigo.getText());
         controllerPai.professor.setNome(txtFldNome.getText());
         controllerPai.professor.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
+          controllerPai.professor.setEmail(txtFldEmail.getText());
         try {
             switch (controllerPai.acao) {
                 case INCLUIR:
@@ -73,6 +76,17 @@ public class CRUDProfessorController implements Initializable {
                     professorRepository.save(controllerPai.professor);
                     break;
                 case EXCLUIR:
+                    if (disciplinaRepository.countByProfessor(controllerPai.professor) > 0) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erro");
+                        alert.setHeaderText("Exclusão de Professor");
+                        alert.setContentText("Não é possivel excluir!\n"
+                                + "Existem disciplinas cadastradas para este "
+                                + "professor. Primeiro remova as disciplinas que estão vinculadas ");
+                        alert.showAndWait();
+
+                        break;
+                    }
                     professorRepository.delete(controllerPai.professor);
                     break;
             }
@@ -103,14 +117,13 @@ public class CRUDProfessorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btnConfirma.disableProperty().bind(txtFldCodigo.textProperty().isEmpty().
                 or(txtFldNome.textProperty().isEmpty()));
-        
     }
 
     public void setCadastroController(ProfessorController controllerPai) {
         this.controllerPai = controllerPai;
         txtFldCodigo.setText(controllerPai.professor.getCpf());
         txtFldNome.setText(controllerPai.professor.getNome());
-
+        txtFldEmail.setText(controllerPai.professor.getEmail());
         cmbCidade.setItems(FXCollections.observableList(
                 cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
 

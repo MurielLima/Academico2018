@@ -47,7 +47,7 @@ public class DisciplinaController implements Initializable {
     private TextField txtFldPesquisar;
     @FXML
     private MaterialDesignIconView btnPesquisar;
-   @FXML
+    @FXML
     private MenuItem mnAlterar;
     @FXML
     private MenuItem mnExcluir;
@@ -56,7 +56,6 @@ public class DisciplinaController implements Initializable {
     private void acIncluir() {
         acao = INCLUIR;
         disciplina = new Disciplina();
-
         showCRUD();
 
     }
@@ -67,22 +66,28 @@ public class DisciplinaController implements Initializable {
         disciplina = tblView.getSelectionModel().getSelectedItem();
         showCRUD();
     }
+
     @FXML
     private void acExcluir() {
         acao = EXCLUIR;
         disciplina = tblView.getSelectionModel().getSelectedItem();
         showCRUD();
     }
+
     @FXML
-    private void acPesquisar(){
-        
-       tblView.setItems(FXCollections.observableList(
+    private void acPesquisar() {
+
+        tblView.setItems(FXCollections.observableList(
                 disciplinaRepository.findByNomeLikeIgnoreCase(txtFldPesquisar.getText())));
     }
+
     @FXML
-    private void acLimpar(){
+    private void acLimpar() {
         txtFldPesquisar.setText("");
+        tblView.setItems(
+                FXCollections.observableList(disciplinaRepository.findAll(new Sort(new Sort.Order("nome")))));
     }
+
     private void showCRUD() {
         String cena = "/fxml/CRUDDisciplina.fxml";
         XPopOver popOver = null;
@@ -111,7 +116,8 @@ public class DisciplinaController implements Initializable {
         btnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
         mnAlterar.visibleProperty().bind(btnAlterar.visibleProperty());
         mnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
-                
+        btnPesquisar.disableProperty().bind(txtFldPesquisar.textProperty().isEmpty());
+
     }
 
 }

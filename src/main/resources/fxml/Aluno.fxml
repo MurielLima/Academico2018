@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AlunoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AlunoController">
 
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -38,9 +38,19 @@
                     <PropertyValueFactory property="cpf"/>
                 </cellValueFactory>
                 </TableColumn>
-                <TableColumn maxWidth="400.0" prefWidth="350.0" text="Nome" >
+                <TableColumn maxWidth="350.0" prefWidth="350.0" text="Nome" >
                 <cellValueFactory>
                     <PropertyValueFactory property="nome"/>
+                </cellValueFactory>
+                </TableColumn>
+                <TableColumn maxWidth="100.0" prefWidth="150.0" text="Email">
+                <cellValueFactory>
+                    <PropertyValueFactory property="email" />
+                </cellValueFactory>
+                </TableColumn>
+                <TableColumn maxWidth="100.0" prefWidth="150.0" text="Cidade">
+                <cellValueFactory>
+                    <PropertyValueFactory property="cidade" />
                 </cellValueFactory>
                 </TableColumn>
               </columns>
@@ -53,11 +63,7 @@
                   </ContextMenu>
                </contextMenu>
             </TableView>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
-              <items>
-                <Button mnemonicParsing="false" text="Button" />
-              </items>
-            </ToolBar>
+
          </children>
       </VBox>
    </children>

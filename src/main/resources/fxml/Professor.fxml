@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfessorController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfessorController">
 
    <children>
       <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -20,6 +20,7 @@
                     <MaterialDesignIconView fx:id="btnIncluir" glyphName="PLUS" onMouseClicked="#acIncluir" size="1.3em" />
                     <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL" onMouseClicked="#acAlterar" size="1.3em" />
                     <MaterialDesignIconView fx:id="btnExcluir" glyphName="DELETE" onMouseClicked="#acExcluir" size="1.3em" />
+                    <MaterialDesignIconView fx:id="btnDisciplinas" glyphName="EYE" onMouseClicked="#acDisciplinas" size="1.3em" />
                 <TextField fx:id="txtFldPesquisar">
                      <HBox.margin>
                         <Insets left="30.0" />
@@ -38,15 +39,26 @@
                     <PropertyValueFactory property="cpf" />
                 </cellValueFactory>
                 </TableColumn>
-                <TableColumn maxWidth="400.0" prefWidth="350.0" text="Nome">
+                <TableColumn maxWidth="350.0" prefWidth="350.0" text="Nome">
                 <cellValueFactory>
                     <PropertyValueFactory property="nome" />
+                </cellValueFactory>
+                </TableColumn>
+                <TableColumn maxWidth="100.0" prefWidth="150.0" text="Email">
+                <cellValueFactory>
+                    <PropertyValueFactory property="email" />
+                </cellValueFactory>
+                </TableColumn>
+                <TableColumn maxWidth="100.0" prefWidth="150.0" text="Cidade">
+                <cellValueFactory>
+                    <PropertyValueFactory property="cidade" />
                 </cellValueFactory>
                 </TableColumn>
               </columns>
                <contextMenu>
                   <ContextMenu>
                     <items>
+                      <MenuItem fx:id="mnDisciplinas" mnemonicParsing="false" onAction="#acDisciplinas" text="Ver Disciplinas" />
                       <MenuItem fx:id="mnAlterar" mnemonicParsing="false" onAction="#acAlterar" text="Alterar" />
                       <MenuItem fx:id="mnExcluir" mnemonicParsing="false" onAction="#acExcluir" text="Excluir" />
                     </items>

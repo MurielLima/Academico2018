@@ -15,20 +15,19 @@ import static config.DAO.cidadeRepository;
 import static config.DAO.ufRepository;
 
 public class PrincipalController implements Initializable {
-    
 
-    
     Disciplina disciplina;
     Professor professor;
     Cidade cidade;
     Uf uf;
-    List<Cidade> lstCit =   new ArrayList<Cidade>();
-    List<Uf> lstUf  =   new ArrayList<Uf>();
-    List<Disciplina> lstDisc    =   new ArrayList<Disciplina>();
-    List<Professor> lstProf    =   new ArrayList<Professor>();
+    List<Cidade> lstCit = new ArrayList<Cidade>();
+    List<Uf> lstUf = new ArrayList<Uf>();
+    List<Disciplina> lstDisc = new ArrayList<Disciplina>();
+    List<Professor> lstProf = new ArrayList<Professor>();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
 //        /**
 //         * Salva os estados e suas Siglas
 //         */
@@ -87,5 +86,5 @@ public class PrincipalController implements Initializable {
 //             professor =  professorRepository.findByNome("Antonio");
 //             disciplina =   new Disciplina(professor,"64565","Matemática",10,"Nenhuma");
 //             disciplinaRepository.save(disciplina);
-    }    
+    }
 }

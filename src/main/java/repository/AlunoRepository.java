@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  *
  * @author Muriel
  */
-public interface AlunoRepository extends MongoRepository<Aluno, String>{
+public interface AlunoRepository extends MongoRepository<Aluno, String> {
+
     public List<Aluno> findByNomeLikeIgnoreCase(String nome);
 }

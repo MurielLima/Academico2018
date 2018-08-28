@@ -12,5 +12,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author Muriel
  */
 public interface UfRepository extends MongoRepository<Uf, String>{
-        public Uf findBySiglaLikeIgnoreCase(String sigla);
+        public List<Uf> findBySiglaLikeIgnoreCase(String sigla);
 }

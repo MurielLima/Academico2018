@@ -5,7 +5,6 @@ package view;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import static config.Config.ALTERAR;
 import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
@@ -32,7 +31,7 @@ import utility.XPopOver;
  * @author Muriel
  */
 public class AlunoController implements Initializable {
- 
+
     /**
      * Initializes the controller class.
      */
@@ -50,10 +49,11 @@ public class AlunoController implements Initializable {
     private TextField txtFldPesquisar;
     @FXML
     private MaterialDesignIconView btnPesquisar;
-   @FXML
+    @FXML
     private MenuItem mnAlterar;
     @FXML
     private MenuItem mnExcluir;
+
     @FXML
     private void acIncluir() {
         acao = INCLUIR;
@@ -89,6 +89,8 @@ public class AlunoController implements Initializable {
     @FXML
     private void acLimpar() {
         txtFldPesquisar.setText("");
+        tblView.setItems(
+                FXCollections.observableList(alunoRepository.findAll(new Sort(new Sort.Order("nome")))));
     }
 
     private void showCRUD() {
@@ -119,7 +121,7 @@ public class AlunoController implements Initializable {
         btnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
         mnAlterar.visibleProperty().bind(btnAlterar.visibleProperty());
         mnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
-                
+        btnPesquisar.disableProperty().bind(txtFldPesquisar.textProperty().isEmpty());
     }
 
 }

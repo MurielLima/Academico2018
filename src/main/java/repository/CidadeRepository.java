@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package repository;
+import java.util.List;
 import model.Cidade;
 import org.springframework.data.mongodb.repository.MongoRepository;
 /**
@@ -12,4 +13,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface CidadeRepository extends MongoRepository<Cidade, String> {
     public Cidade findByNome(String nome);
+    
+    public List<Cidade> findByUf(String nome);
 }
