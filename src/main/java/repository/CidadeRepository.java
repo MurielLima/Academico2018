@@ -6,6 +6,7 @@
 package repository;
 import java.util.List;
 import model.Cidade;
+import model.Uf;
 import org.springframework.data.mongodb.repository.MongoRepository;
 /**
  *
@@ -13,6 +14,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface CidadeRepository extends MongoRepository<Cidade, String> {
     public Cidade findByNome(String nome);
-    
+    public Integer countByNomeAndUf(String nome,Uf uf);
     public List<Cidade> findByUf(String nome);
 }

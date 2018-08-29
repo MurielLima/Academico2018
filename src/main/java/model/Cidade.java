@@ -6,6 +6,8 @@
 package model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,7 +16,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Muriel
  */
 @Document
+//        @CompoundIndexes({
+//    @CompoundIndex(
+//            name = "cidadeUf_idx",
+//            def = "{'cidade': 1','uf': 1}",
+//            unique = true
+//    )
+//})
 public class Cidade {
+
     @Id
     private String id;
     private String nome;
@@ -29,7 +39,6 @@ public class Cidade {
     public Cidade() {
     }
 
-    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -55,7 +64,6 @@ public class Cidade {
         return true;
     }
 
-    
     public String getNome() {
         return nome;
     }
@@ -74,8 +82,7 @@ public class Cidade {
 
     @Override
     public String toString() {
-        return  nome ;
+        return nome + " - " + uf.getSigla();
     }
-    
-    
+
 }

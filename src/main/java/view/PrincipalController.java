@@ -27,7 +27,62 @@ public class PrincipalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+//uf = new Uf("Acre", "AC");;;;
+//        ufRepository.save(uf);
+//        uf = new Uf("Alagoas", "AL");
+//        ufRepository.save(uf);
+//        uf = new Uf("Amapá", "AP");
+//        ufRepository.save(uf);
+//        uf = new Uf("Amazonas", "AM");
+//        ufRepository.save(uf);
+//        uf = new Uf("Bahia", "BA");
+//        ufRepository.save(uf);
+//        uf = new Uf("Ceará", "CE");
+//        ufRepository.save(uf);
+//        uf = new Uf("Distrito Federal", "DF");
+//        ufRepository.save(uf);
+//        uf = new Uf("Espírito Santo", "ES");
+//        ufRepository.save(uf);
+//        uf = new Uf("Goiás", "GO");
+//        ufRepository.save(uf);
+//        uf = new Uf("Maranhão", "MA");
+//        ufRepository.save(uf);
+//        uf = new Uf("Mato Grosso", "MT");
+//        ufRepository.save(uf);
+//        
+//        uf = new Uf("Mato Grosso do Sul", "MS");
+//        ufRepository.save(uf);
+//        uf = new Uf("Minas Gerais", "MG");
+//        ufRepository.save(uf);
+//        uf = new Uf("Pará", "PA");
+//        ufRepository.save(uf);
+//        uf = new Uf("Paraíba", "PB");
+//        ufRepository.save(uf);
+//        uf = new Uf("Paraná", "PR");
+//        ufRepository.save(uf);
+//        uf = new Uf("Pernambuco", "PE");
+//        ufRepository.save(uf);
+//        uf = new Uf("Piauí", "PI");
+//        ufRepository.save(uf);
+//        uf = new Uf("Rio de Janeiro", "RJ");
+//        ufRepository.save(uf);
+//        uf = new Uf("Rio Grande do Norte", "RN");
+//        ufRepository.save(uf);
+//        uf = new Uf("Rio Grande do Sul", "RS");
+//        ufRepository.save(uf);
+//        
+//        uf = new Uf("Rondônia", "RO");
+//        ufRepository.save(uf);
+//        uf = new Uf("Roraima", "RR");
+//        ufRepository.save(uf);
+//        uf = new Uf("Santa Catarina", "SC");
+//        ufRepository.save(uf);
+//        uf = new Uf("São Paulo", "SP");
+//        ufRepository.save(uf);
+//        uf = new Uf("Sergipe", "SE");
+//        ufRepository.save(uf);
+//        uf = new Uf("Tocantins", "TO");
+//        ufRepository.save(uf);
 //        /**
 //         * Salva os estados e suas Siglas
 //         */

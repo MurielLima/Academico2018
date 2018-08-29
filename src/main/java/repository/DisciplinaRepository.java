@@ -10,10 +10,13 @@ public interface DisciplinaRepository extends MongoRepository<Disciplina, String
 
 //        public Integer countByProfessor(Professor professor);
     public Disciplina findByCodigo(String codigo);
+    
 
     public void deleteByCodigo(String codigo);
+    
 
     public List<Disciplina> findByNomeLikeIgnoreCase(String nome);
+    
 
     public Integer countByProfessor(Professor professor);
     public List<Disciplina> findByProfessor(Professor professor);

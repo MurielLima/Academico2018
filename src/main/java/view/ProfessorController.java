@@ -16,6 +16,7 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -37,6 +38,7 @@ public class ProfessorController implements Initializable {
     public TableView<Professor> tblView;
     public char acao;
     public Professor professor;
+
     @FXML
     private MaterialDesignIconView btnIncluir;
     @FXML
@@ -49,6 +51,8 @@ public class ProfessorController implements Initializable {
     private TextField txtFldPesquisar;
     @FXML
     private MaterialDesignIconView btnPesquisar;
+    @FXML
+    private MenuItem mnIncluir;
     @FXML
     private MenuItem mnAlterar;
     @FXML

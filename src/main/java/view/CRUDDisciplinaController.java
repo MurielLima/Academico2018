@@ -11,7 +11,10 @@ import static config.Config.INCLUIR;
 import static config.DAO.disciplinaRepository;
 import static config.DAO.professorRepository;
 import java.net.URL;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -41,6 +44,10 @@ public class CRUDDisciplinaController implements Initializable {
 
     @FXML
     private TextField txtFldNome;
+    @FXML
+    private TextField txtFldObservacao;
+    @FXML
+    private TextField txtFldHoras;
 
     @FXML
     private AnchorPane anchorPane;
@@ -50,6 +57,8 @@ public class CRUDDisciplinaController implements Initializable {
 
     @FXML
     private ComboBox cmbProfessor;
+    private final char separadorDecimal
+            = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
 
     @FXML
     private void btnCancelaClick() {
@@ -61,6 +70,8 @@ public class CRUDDisciplinaController implements Initializable {
     private void btnConfirmaClick() {
         controllerPai.disciplina.setCodigo(txtFldCodigo.getText());
         controllerPai.disciplina.setNome(txtFldNome.getText());
+        controllerPai.disciplina.setObservacao(txtFldObservacao.getText());
+        controllerPai.disciplina.setAulas(Integer.parseInt(txtFldHoras.getText()));
         controllerPai.disciplina.setProfessor((Professor) cmbProfessor.getSelectionModel().getSelectedItem());
         try {
             switch (controllerPai.acao) {
@@ -99,15 +110,16 @@ public class CRUDDisciplinaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         btnConfirma.disableProperty().bind(txtFldCodigo.textProperty().isEmpty().
-                or(txtFldNome.textProperty().isEmpty()));
-
+                or(txtFldNome.textProperty().isEmpty()).or(txtFldHoras.textProperty().isEmpty()));
+//        txtFldHoras.textProperty().addListener(listenerHoras);
+//        txtFldCodigo.textProperty().addListener(listenerCodigo);    
     }
 
     public void setCadastroController(DisciplinaController controllerPai) {
         this.controllerPai = controllerPai;
         txtFldCodigo.setText(controllerPai.disciplina.getCodigo());
         txtFldNome.setText(controllerPai.disciplina.getNome());
-
+        txtFldHoras.setText(String.valueOf(controllerPai.disciplina.getAulas()));
         cmbProfessor.setItems(FXCollections.observableList(
                 professorRepository.findAll(new Sort(new Sort.Order("nome")))));
 
@@ -119,5 +131,22 @@ public class CRUDDisciplinaController implements Initializable {
         txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
 
     }
-
+    private final ChangeListener<? super String> listenerHoras
+            = (observable, oldValue, newValue) -> {
+                if (!newValue.matches("\\d*?")
+                && !newValue.isEmpty()) {
+                    txtFldHoras.setText(oldValue);
+                } else {
+                    txtFldHoras.setText(newValue);
+                }
+            };
+      private final ChangeListener<? super String> listenerCodigo
+            = (observable, oldValue, newValue) -> {
+                if (!newValue.matches("\\d*?")
+                && !newValue.isEmpty()) {
+                    txtFldCodigo.setText(oldValue);
+                } else {
+                    txtFldCodigo.setText(newValue);
+                }
+            };
 }

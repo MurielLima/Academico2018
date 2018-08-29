@@ -20,6 +20,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import model.Disciplina;
+import org.controlsfx.control.PopOver;
 import org.springframework.data.domain.Sort;
 import utility.XPopOver;
 
@@ -47,6 +48,8 @@ public class DisciplinaController implements Initializable {
     private TextField txtFldPesquisar;
     @FXML
     private MaterialDesignIconView btnPesquisar;
+    @FXML
+    private MenuItem mnIncluir;
     @FXML
     private MenuItem mnAlterar;
     @FXML
@@ -97,7 +100,7 @@ public class DisciplinaController implements Initializable {
                 popOver = new XPopOver(cena, "Inclusão de Disciplina", btnIncluir);
                 break;
             case ALTERAR:
-                popOver = new XPopOver(cena, "Alteração de Disciplina", btnAlterar);
+                popOver = new XPopOver(cena, "Alteração de Disciplina", btnAlterar, PopOver.ArrowLocation.TOP_CENTER);
                 break;
             case EXCLUIR:
                 popOver = new XPopOver(cena, "Exclusão de Disciplina", btnExcluir);

@@ -12,8 +12,10 @@ import static config.DAO.cidadeRepository;
 import static config.DAO.alunoRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,11 +23,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.Aluno;
 import model.Cidade;
+import org.controlsfx.control.PopOver;
 import org.springframework.data.domain.Sort;
 import utility.XPopOver;
 
@@ -33,12 +34,12 @@ import utility.XPopOver;
  *
  * @author Muriel
  */
-public class CRUDAlunoController implements Initializable{
-        /**
+public class CRUDAlunoController implements Initializable {
+
+    /**
      * Initializes the controller class.
      */
     private AlunoController controllerPai;
-
 
     @FXML
     private TextField txtFldCodigo;
@@ -56,7 +57,7 @@ public class CRUDAlunoController implements Initializable{
 
     @FXML
     public ComboBox cmbCidade;
-    
+
     public char acao;
     public Cidade cidade;
     @FXML
@@ -73,37 +74,9 @@ public class CRUDAlunoController implements Initializable{
     private MenuItem mnAlterar;
     @FXML
     private MenuItem mnExcluir;
+    private final char separadorDecimal
+            = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
 
-    @FXML
-    private void acIncluir() {
-        acao = INCLUIR;
-        cidade = new Cidade();
-        showCRUD();
-
-    }
-
-    @FXML
-    private void acAlterar() {
-        acao = ALTERAR;
-        cidade = (Cidade) cmbCidade.getSelectionModel().getSelectedItem();
-        showCRUD();
-
-    }
-     private void showCRUD() {
-        String cena = "/fxml/CRUDCidade.fxml";
-        XPopOver popOver = null;
-
-        switch (acao) {
-            case INCLUIR:
-                popOver = new XPopOver(cena, "Inclusão de Cidade", btnIncluir);
-                break;
-            case ALTERAR:
-                popOver = new XPopOver(cena, "Alteração de Cidade", btnAlterar);
-                break;
-        }
-        CRUDCidadeAlunoController controllerFilho = popOver.getLoader().getController();
-        controllerFilho.setCadastroController(this);
-    }
     @FXML
     private void btnCancelaClick() {
         anchorPane.getScene().getWindow().hide();
@@ -154,9 +127,9 @@ public class CRUDAlunoController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnConfirma.disableProperty().bind(txtFldCodigo.textProperty().isEmpty().
-                or(txtFldNome.textProperty().isEmpty()));
+                or(txtFldNome.textProperty().isEmpty()).or(txtFldEmail.textProperty().isEmpty()).or(cmbCidade.getSelectionModel().selectedItemProperty().isNull()));
+//        txtFldCodigo.textProperty().addListener(listenerCpf);
         btnAlterar.visibleProperty().bind(cmbCidade.getSelectionModel().selectedItemProperty().isNotNull());
-     
     }
 
     public void setCadastroController(AlunoController controllerPai) {
@@ -176,6 +149,50 @@ public class CRUDAlunoController implements Initializable{
         txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
         txtFldEmail.setDisable(controllerPai.acao == EXCLUIR);
 
+    }
+    private final ChangeListener<? super String> listenerCpf
+            = (observable, oldValue, newValue) -> {
+                if (!newValue.matches("([0-9])*")
+                && !newValue.isEmpty()) {
+                    txtFldCodigo.setText(oldValue);
+                } else {
+                    txtFldCodigo.setText(newValue);
+                }
+            };
+
+    /**
+     * CRUD CIDADE
+     */
+    @FXML
+    private void acIncluir() {
+        acao = INCLUIR;
+        cidade = new Cidade();
+        showCRUD();
+
+    }
+
+    @FXML
+    private void acAlterar() {
+        acao = ALTERAR;
+        cidade = (Cidade) cmbCidade.getSelectionModel().getSelectedItem();
+        showCRUD();
+
+    }
+
+    private void showCRUD() {
+        String cena = "/fxml/CRUDCidadeA.fxml";
+        XPopOver popOver = null;
+
+        switch (acao) {
+            case INCLUIR:
+                popOver = new XPopOver(cena, "Inclusão de Cidade", btnIncluir, PopOver.ArrowLocation.TOP_RIGHT);
+                break;
+            case ALTERAR:
+                popOver = new XPopOver(cena, "Alteração de Cidade", btnAlterar, PopOver.ArrowLocation.TOP_RIGHT);
+                break;
+        }
+        CRUDCidadeAlunoController controllerFilho = popOver.getLoader().getController();
+        controllerFilho.setCadastroController(this);
     }
 
 }

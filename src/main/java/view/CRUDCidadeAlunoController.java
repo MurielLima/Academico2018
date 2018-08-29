@@ -6,11 +6,9 @@ package view;
  * and open the template in the editor.
  */
 import static config.Config.ALTERAR;
-import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
-import static config.DAO.alunoRepository;
 import static config.DAO.cidadeRepository;
-import static config.DAO.disciplinaRepository;
+import static config.DAO.professorRepository;
 import static config.DAO.ufRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
@@ -23,9 +21,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import model.Cidade;
 import model.Uf;
 import org.springframework.data.domain.Sort;
+import utility.XPopOver;
 
 /**
  * FXML Controller class
@@ -50,12 +48,10 @@ public class CRUDCidadeAlunoController implements Initializable {
     @FXML
     private Button btnConfirma;
     private CRUDAlunoController controllerPai;
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     btnConfirma.disableProperty().bind(txtFldNome.textProperty().isEmpty());
+        btnConfirma.disableProperty().bind(txtFldNome.textProperty().isEmpty().or(cmbUf.getSelectionModel().selectedItemProperty().isNull()));
     }
 
     public void setCadastroController(CRUDAlunoController controllerPai) {
@@ -67,32 +63,41 @@ public class CRUDCidadeAlunoController implements Initializable {
             cmbUf.getSelectionModel().select(controllerPai.cidade.getUf());
         }
     }
-    
-
 
     @FXML
     private void btnCancelaClick() {
         controllerPai.cmbCidade.requestFocus();
+        anchorPane.getScene().getWindow().hide();
     }
 
     @FXML
     private void btnConfirmaClick() {
-        controllerPai.cidade.setNome(txtFldNome.getText());
+        controllerPai.cidade.setNome(txtFldNome.getText().toUpperCase());
         controllerPai.cidade.setUf((Uf) cmbUf.getSelectionModel().getSelectedItem());
         try {
-            switch (controllerPai.acao) {
-                case INCLUIR:
-                    cidadeRepository.insert(controllerPai.cidade);
-                    break;
-                case ALTERAR:
-                    cidadeRepository.save(controllerPai.cidade);
-                    break;
+            if (cidadeRepository.countByNomeAndUf(controllerPai.cidade.getNome(), controllerPai.cidade.getUf()) == 1) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Cadastro de Cidade");
+                alert.setContentText("Já exite uma cidade cadastrada com esse nome nesse estado.");
+                alert.showAndWait();
+            } else {
+                switch (controllerPai.acao) {
+                    case INCLUIR:
+                        cidadeRepository.insert(controllerPai.cidade);
+                        break;
+                    case ALTERAR:
+                        cidadeRepository.save(controllerPai.cidade);
+                        break;
+                }
+
+                controllerPai.cmbCidade.setItems(FXCollections.observableList(
+                        ufRepository.findAll(new Sort(new Sort.Order("sigla")))));
+                controllerPai.cmbCidade.getSelectionModel().clearSelection();
+                controllerPai.cmbCidade.getSelectionModel().select(controllerPai.cidade);
+
+                anchorPane.getScene().getWindow().hide();
             }
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Sucesso");
-            alert.setHeaderText("Cadastro de Cidade");
-            alert.setContentText("Feito com sucesso!!");
-            alert.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
@@ -101,7 +106,7 @@ public class CRUDCidadeAlunoController implements Initializable {
             alert.showAndWait();
 
         }
-        
+
     }
 
 }

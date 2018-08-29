@@ -50,6 +50,8 @@ public class AlunoController implements Initializable {
     @FXML
     private MaterialDesignIconView btnPesquisar;
     @FXML
+    private MenuItem mnIncluir;
+    @FXML
     private MenuItem mnAlterar;
     @FXML
     private MenuItem mnExcluir;
@@ -83,7 +85,7 @@ public class AlunoController implements Initializable {
     private void acPesquisar() {
 
         tblView.setItems(FXCollections.observableList(
-                alunoRepository.findByNomeLikeIgnoreCase(txtFldPesquisar.getText())));
+                alunoRepository.findByNomeLikeIgnoreCaseOrEmailLikeIgnoreCase(txtFldPesquisar.getText(), txtFldPesquisar.getText())));
     }
 
     @FXML

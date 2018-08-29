@@ -18,27 +18,36 @@ import org.controlsfx.control.PopOver;
  * @author Idomar Cerutti
  */
 public class XPopOver {
-    
+
     private FXMLLoader loader;
-    
+    private PopOver.ArrowLocation posicao;
+
     public XPopOver(String arquivoFXML, String titulo, Node node) {
+        posicao = PopOver.ArrowLocation.TOP_LEFT;
+        localXPopOver(arquivoFXML, titulo, node, posicao);
+    }
+    public XPopOver(String arquivoFXML, String titulo, Node node,
+            PopOver.ArrowLocation posicao) {
+        localXPopOver(arquivoFXML, titulo, node, posicao);
+    }
+
+    private void localXPopOver(String arquivoFXML, String titulo, Node node,
+            PopOver.ArrowLocation posicao) {
         try {
             loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(arquivoFXML));
             loader.setResources(i18n);
-            
+
             PopOver popOver = new PopOver();
             popOver.setContentNode(loader.load());
             popOver.setAutoFix(true);
             popOver.setAutoHide(true);
             popOver.setHideOnEscape(true);
             popOver.setHeaderAlwaysVisible(true);
-            popOver.setArrowLocation(PopOver.ArrowLocation.TOP_LEFT);
+            popOver.setArrowLocation(posicao);
             popOver.setTitle(titulo);
             popOver.show(node);
-            
-            
-            
+
         } catch (IOException ex) {
             Logger.getLogger(XPopOver.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -47,6 +56,7 @@ public class XPopOver {
     public FXMLLoader getLoader() {
         return loader;
     }
-    
-    
+
+ 
+
 }

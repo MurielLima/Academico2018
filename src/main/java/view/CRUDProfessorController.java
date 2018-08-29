@@ -11,8 +11,12 @@ import static config.Config.INCLUIR;
 import static config.DAO.professorRepository;
 import static config.DAO.cidadeRepository;
 import static config.DAO.disciplinaRepository;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,7 +27,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import model.Cidade;
+import org.controlsfx.control.PopOver;
 import org.springframework.data.domain.Sort;
+import utility.XPopOver;
 
 /**
  * FXML Controller class
@@ -39,6 +45,8 @@ public class CRUDProfessorController implements Initializable {
     public Cidade cidade;
     public char acao;
     @FXML
+    public ComboBox cmbCidade;
+    @FXML
     private TextField txtFldCodigo;
 
     @FXML
@@ -48,13 +56,17 @@ public class CRUDProfessorController implements Initializable {
 
     @FXML
     private AnchorPane anchorPane;
+    @FXML
+    private MaterialDesignIconView btnAlterar;
+    @FXML
+    private MaterialDesignIconView btnIncluir;
 
     @FXML
     private Button btnConfirma;
+    private final char separadorDecimal
+            = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
 
-    @FXML
-    private ComboBox cmbCidade;
-    
+
     @FXML
     private void btnCancelaClick() {
         anchorPane.getScene().getWindow().hide();
@@ -66,7 +78,7 @@ public class CRUDProfessorController implements Initializable {
         controllerPai.professor.setCpf(txtFldCodigo.getText());
         controllerPai.professor.setNome(txtFldNome.getText());
         controllerPai.professor.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
-          controllerPai.professor.setEmail(txtFldEmail.getText());
+        controllerPai.professor.setEmail(txtFldEmail.getText());
         try {
             switch (controllerPai.acao) {
                 case INCLUIR:
@@ -90,6 +102,7 @@ public class CRUDProfessorController implements Initializable {
                     professorRepository.delete(controllerPai.professor);
                     break;
             }
+
             controllerPai.tblView.setItems(
                     FXCollections.observableList(professorRepository.findAll(
                             new Sort(new Sort.Order("nome")))));
@@ -97,7 +110,6 @@ public class CRUDProfessorController implements Initializable {
             controllerPai.tblView.getSelectionModel().clearSelection();
             controllerPai.tblView.getSelectionModel().select(controllerPai.professor);
             anchorPane.getScene().getWindow().hide();
-//
         } catch (Exception e) {
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -109,14 +121,17 @@ public class CRUDProfessorController implements Initializable {
                 alert.setContentText(e.getMessage());
             }
             alert.showAndWait();
-
+            txtFldCodigo.requestFocus();
         }
+
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        btnConfirma.disableProperty().bind(txtFldCodigo.textProperty().isEmpty().
-                or(txtFldNome.textProperty().isEmpty()));
+         btnConfirma.disableProperty().bind(txtFldCodigo.textProperty().isEmpty().
+                or(txtFldNome.textProperty().isEmpty()).or(txtFldEmail.textProperty().isEmpty()).or(cmbCidade.getSelectionModel().selectedItemProperty().isNull()));
+        btnAlterar.visibleProperty().bind(cmbCidade.getSelectionModel().selectedItemProperty().isNotNull());
+//        txtFldCodigo.textProperty().addListener(listenerCpf);
     }
 
     public void setCadastroController(ProfessorController controllerPai) {
@@ -135,5 +150,48 @@ public class CRUDProfessorController implements Initializable {
         txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
 
     }
+//      private final ChangeListener<? super String> listenerCpf = (observable, oldValue, newValue) -> {
+//                if (!newValue.matches("[0-9]")
+//                && !newValue.isEmpty()) {
+//                    txtFldCodigo.setText(oldValue);
+//                } else {
+//                    txtFldCodigo.setText(newValue);
+//                }
+//            };
+    /**
+     * CRUD CIDADE
+     */
+    @FXML
+    private void acIncluir() {
+        acao = INCLUIR;
+        cidade = new Cidade();
+        showCRUD();
 
+    }
+
+    @FXML
+    private void acAlterar() {
+        acao = ALTERAR;
+        cidade = (Cidade) cmbCidade.getSelectionModel().getSelectedItem();
+        showCRUD();
+
+    }
+
+    private void showCRUD() {
+        String cena = "/fxml/CRUDCidadeP.fxml";
+        XPopOver popOver = null;
+
+        switch (acao) {
+            case INCLUIR:
+                popOver = new XPopOver(cena, "Inclusão de Cidade", btnIncluir, PopOver.ArrowLocation.TOP_RIGHT);
+                break;
+            case ALTERAR:
+                popOver = new XPopOver(cena, "Alteração de Cidade", btnAlterar,PopOver.ArrowLocation.TOP_RIGHT);
+                break;
+        }
+        CRUDCidadeProfessorController controllerFilho = popOver.getLoader().getController();
+        controllerFilho.setCadastroController(this);
+    }
+     
+     
 }

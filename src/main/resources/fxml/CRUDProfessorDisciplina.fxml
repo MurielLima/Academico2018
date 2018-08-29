@@ -10,40 +10,41 @@
 <?import javafx.geometry.*?>
 
 <AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CRUDProfessorDisciplinaController">
-   <children>
-      <VBox alignment="CENTER" prefHeight="420.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <Label fx:id="lblNomeProfessor">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font></Label>
-                        <TableView fx:id="tblViewDisciplinas">
-                       <columns>
-                         <TableColumn prefWidth="75.0" text="Código">
-                         <cellValueFactory>
-                             <PropertyValueFactory property="codigo" />
-                         </cellValueFactory>
-                         </TableColumn>
-                           <TableColumn maxWidth="400.0" prefWidth="350.0" text="Nome">
-                         <cellValueFactory>
-                             <PropertyValueFactory property="nome" />
-                         </cellValueFactory>
-                         </TableColumn>
-                         <TableColumn maxWidth="250.0" prefWidth="100.0" text="Professor">
-                         <cellValueFactory>
-                             <PropertyValueFactory property="primeiroNome" />
-                         </cellValueFactory>
-                         </TableColumn>
-                       </columns>
-         <!--               <contextMenu>
-                           <ContextMenu>
-                             <items>
-                               <MenuItem fx:id="mnA" mnemonicParsing="false" onAction="" text="" />
-                             </items>
-                           </ContextMenu>
-                        </contextMenu>-->
-                     </TableView>
-         </children>
-      </VBox>
-   </children>
+    <children>
+        <VBox alignment="CENTER" prefHeight="420.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label fx:id="lblNomeProfessor">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="tblViewDisciplinas">
+                    <columns>
+                        <TableColumn prefWidth="75.0" text="Código">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="codigo" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="400.0" prefWidth="350.0" text="Nome">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nome" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="250.0" prefWidth="100.0" text="Professor">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="primeiroNome" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <!--               <contextMenu>
+                       <ContextMenu>
+                         <items>
+                           <MenuItem fx:id="mnA" mnemonicParsing="false" onAction="" text="" />
+                         </items>
+                       </ContextMenu>
+                    </contextMenu>-->
+                </TableView>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>
