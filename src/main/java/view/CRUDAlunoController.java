@@ -85,7 +85,7 @@ public class CRUDAlunoController implements Initializable {
 
     @FXML
     private void btnConfirmaClick() {
-        controllerPai.aluno.setCpf(txtFldCodigo.getText());
+        controllerPai.aluno.setRa(txtFldCodigo.getText());
         controllerPai.aluno.setNome(txtFldNome.getText());
         controllerPai.aluno.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
         controllerPai.aluno.setEmail(txtFldEmail.getText());
@@ -134,7 +134,7 @@ public class CRUDAlunoController implements Initializable {
 
     public void setCadastroController(AlunoController controllerPai) {
         this.controllerPai = controllerPai;
-        txtFldCodigo.setText(controllerPai.aluno.getCpf());
+        txtFldCodigo.setText(controllerPai.aluno.getRa());
         txtFldNome.setText(controllerPai.aluno.getNome());
         txtFldEmail.setText(controllerPai.aluno.getEmail());
 

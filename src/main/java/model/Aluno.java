@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.time.LocalDate;
+import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -23,25 +25,35 @@ public class Aluno {
     private String email;
     
     @Indexed(unique = true)
-    private String cpf;
+    private String ra;
     
+    private LocalDate dataNascimento;
     @DBRef
     private Cidade cidade;
+    private List<Matricula> lstMat;
 
     public Aluno() {
     }
 
-    public Aluno(String nome, String email, String cpf, Cidade cidade) {
+    public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade) {
         this.nome = nome;
         this.email = email;
-        this.cpf = cpf;
+        this.ra = ra;
+        this.dataNascimento = dataNascimento;
         this.cidade = cidade;
     }
 
-    public Aluno(String nome, String email, String cpf) {
+    public Aluno(String nome, String email, String ra, Cidade cidade) {
         this.nome = nome;
         this.email = email;
-        this.cpf = cpf;
+        this.ra = ra;
+        this.cidade = cidade;
+    }
+
+    public Aluno(String nome, String email, String ra) {
+        this.nome = nome;
+        this.email = email;
+        this.ra = ra;
     }
 
     public String getNome() {
@@ -60,12 +72,12 @@ public class Aluno {
         this.email = email;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getRa() {
+        return ra;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setRa(String ra) {
+        this.ra = ra;
     }
 
     public Cidade getCidade() {
