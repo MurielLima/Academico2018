@@ -34,14 +34,24 @@
                 </HBox>
                 <TableView fx:id="tblView" prefHeight="350.0" prefWidth="310.0">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="CPF" >
+                        <TableColumn prefWidth="75.0" text="RA" >
                             <cellValueFactory>
-                                <PropertyValueFactory property="cpf"/>
+                                <PropertyValueFactory property="ra"/>
                             </cellValueFactory>
                         </TableColumn>
                         <TableColumn maxWidth="350.0" prefWidth="350.0" text="Nome" >
                             <cellValueFactory>
                                 <PropertyValueFactory property="nome"/>
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="150.0" prefWidth="50.0" text="Disciplinas">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="disciplinasQtd" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="150.0" prefWidth="50.0" text="Nascimento">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="disciplinasQtd" />
                             </cellValueFactory>
                         </TableColumn>
                         <TableColumn maxWidth="150.0" prefWidth="150.0" text="Email">

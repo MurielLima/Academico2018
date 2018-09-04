@@ -24,7 +24,7 @@ public class MainApp extends Application {
         stage.show();
         scene.getWindow().setOnCloseRequest((WindowEvent ev) -> {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "Desejarealmente sair do sistema?",
+                "Deseja realmente sair do sistema?",
         ButtonType.YES,ButtonType.NO);
         alert.setTitle("Acadêmico - 2018");
         alert.showAndWait();

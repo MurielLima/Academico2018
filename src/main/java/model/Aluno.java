@@ -6,6 +6,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -30,17 +31,9 @@ public class Aluno {
     private LocalDate dataNascimento;
     @DBRef
     private Cidade cidade;
-    private List<Matricula> lstMat;
+    private List<Matricula> matriculas = new ArrayList<>();
 
     public Aluno() {
-    }
-
-    public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade) {
-        this.nome = nome;
-        this.email = email;
-        this.ra = ra;
-        this.dataNascimento = dataNascimento;
-        this.cidade = cidade;
     }
 
     public Aluno(String nome, String email, String ra, Cidade cidade) {
@@ -50,12 +43,19 @@ public class Aluno {
         this.cidade = cidade;
     }
 
-    public Aluno(String nome, String email, String ra) {
+    public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade,
+            List<Matricula> matriculas) {
         this.nome = nome;
         this.email = email;
         this.ra = ra;
+        this.dataNascimento = dataNascimento;
+        this.cidade = cidade;
+        this.matriculas = matriculas;
     }
 
+    public int getDisciplinasQtd(){
+        return matriculas.size();
+    }
     public String getNome() {
         return nome;
     }

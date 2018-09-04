@@ -13,6 +13,7 @@ import static config.DAO.disciplinaRepository;
 import static config.DAO.professorRepository;
 import static config.DAO.cidadeRepository;
 import static config.DAO.ufRepository;
+import model.Matricula;
 
 public class PrincipalController implements Initializable {
 
@@ -24,9 +25,19 @@ public class PrincipalController implements Initializable {
     List<Uf> lstUf = new ArrayList<Uf>();
     List<Disciplina> lstDisc = new ArrayList<Disciplina>();
     List<Professor> lstProf = new ArrayList<Professor>();
+    List<Matricula> lstMatricula = new ArrayList<Matricula>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        lstMatricula.add(new Matricula(disciplinaRepository.findByCodigo("123"),70,75,0,2));
+        
+        for (Matricula m:lstMatricula){
+            System.out.println(m.getDisciplina());
+            System.out.println(m.getMedia());
+            System.out.println(m.getStatus());
+            System.out.println("----------------------");
+            
+        }
 //uf = new Uf("Acre", "AC");;;;
 //        ufRepository.save(uf);
 //        uf = new Uf("Alagoas", "AL");

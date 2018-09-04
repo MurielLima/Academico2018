@@ -19,7 +19,7 @@
                     <children>
                         <VBox spacing="5.0">
                             <children>
-                                <Label text="CPF" />
+                                <Label text="RA" />
                                 <TextField fx:id="txtFldCodigo" prefWidth="70.0" />
                             </children>
                             <HBox.margin>

@@ -28,7 +28,11 @@ public class Matricula {
 
     public Matricula(Disciplina disciplina, int nota1Sem, int nota2Sem, int notaExam, int faltas) {
         this.disciplina = disciplina;
-
+        setNota1Sem(nota1Sem);
+        setNota2Sem(nota2Sem);
+        setNotaExam(notaExam);
+        setFaltas(faltas);
+        
     }
 
     public Disciplina getDisciplina() {

@@ -18,4 +18,5 @@ public interface AlunoRepository extends MongoRepository<Aluno, String> {
 
     public List<Aluno> findByNomeLikeIgnoreCase(String nome);
     public List<Aluno> findByNomeLikeIgnoreCaseOrEmailLikeIgnoreCase(String nome,String email);
+    public Aluno findByRa(String ra);
 }
