@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -57,6 +58,10 @@ public class CRUDAlunoController implements Initializable {
 
     @FXML
     public ComboBox cmbCidade;
+    
+    @FXML
+    public DatePicker dtPckrNascimento;
+    
 
     public char acao;
     public Cidade cidade;
@@ -89,6 +94,7 @@ public class CRUDAlunoController implements Initializable {
         controllerPai.aluno.setNome(txtFldNome.getText());
         controllerPai.aluno.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
         controllerPai.aluno.setEmail(txtFldEmail.getText());
+        controllerPai.aluno.setDataNascimento(dtPckrNascimento.getValue());
         try {
             switch (controllerPai.acao) {
                 case INCLUIR:
@@ -137,6 +143,7 @@ public class CRUDAlunoController implements Initializable {
         txtFldCodigo.setText(controllerPai.aluno.getRa());
         txtFldNome.setText(controllerPai.aluno.getNome());
         txtFldEmail.setText(controllerPai.aluno.getEmail());
+        dtPckrNascimento.setValue(controllerPai.aluno.getDataNascimento());
 
         cmbCidade.setItems(FXCollections.observableList(
                 cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
@@ -148,6 +155,7 @@ public class CRUDAlunoController implements Initializable {
         txtFldCodigo.setDisable(controllerPai.acao == EXCLUIR);
         txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
         txtFldEmail.setDisable(controllerPai.acao == EXCLUIR);
+        dtPckrNascimento.setDisable(controllerPai.acao == EXCLUIR);
 
     }
     private final ChangeListener<? super String> listenerCpf

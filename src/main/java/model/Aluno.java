@@ -5,6 +5,7 @@
  */
 package model;
 
+import static config.Config.df;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +20,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document
 public class Aluno {
-       @Id
+
+    @Id
     private String id;
-    
+
     private String nome;
     private String email;
-    
+
     @Indexed(unique = true)
     private String ra;
-    
+
     private LocalDate dataNascimento;
     @DBRef
     private Cidade cidade;
@@ -42,6 +44,14 @@ public class Aluno {
         this.ra = ra;
         this.cidade = cidade;
     }
+    public Aluno(String nome, String email, String ra, Cidade cidade,
+            List<Matricula> matriculas) {
+        this.nome = nome;
+        this.email = email;
+        this.ra = ra;
+        this.cidade = cidade;
+        this.matriculas = matriculas;
+    }
 
     public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade,
             List<Matricula> matriculas) {
@@ -53,11 +63,36 @@ public class Aluno {
         this.matriculas = matriculas;
     }
 
-    public int getDisciplinasQtd(){
+    public int getDisciplinasQtd() {
         return matriculas.size();
     }
+
     public String getNome() {
         return nome;
+    }
+
+    public String getDataNascimentoFormat() {
+        if (dataNascimento != null) {
+            return (dataNascimento.format(df));
+        } else {
+            return "";
+        }
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(List<Matricula> matriculas) {
+        this.matriculas = matriculas;
     }
 
     public void setNome(String nome) {
@@ -113,11 +148,9 @@ public class Aluno {
         return true;
     }
 
-   
-
     @Override
     public String toString() {
-        return  getNome();
+        return getNome();
     }
-    
+
 }

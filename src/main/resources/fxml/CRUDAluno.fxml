@@ -39,13 +39,27 @@
                         <VBox spacing="5.0" />
                     </children>
                 </HBox>
-                <VBox spacing="5.0">
-                    <children>
-                        <Label text="Email" />
-                        <TextField fx:id="txtFldEmail" prefHeight="25.0" prefWidth="330.0" />
-                    </children>
-                </VBox>
-                <HBox alignment="BOTTOM_CENTER" spacing="5.0">
+            <HBox spacing="5.0">
+               <children>
+                      <VBox spacing="5.0">
+                          <children>
+                              <Label text="Email" />
+                              <TextField fx:id="txtFldEmail" prefHeight="25.0" prefWidth="330.0" />
+                          </children>
+                      </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="Data de Nascimento">
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </Label>
+                        <DatePicker fx:id="dtPckrNascimento" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+                <HBox alignment="BOTTOM_LEFT" spacing="5.0">
                     <children>
                         <VBox>
                             <children>
@@ -56,7 +70,7 @@
                                         <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL" onMouseClicked="#acAlterar" size="1.3em" />
                                     </children>
                                 </HBox>
-                                <ComboBox fx:id="cmbCidade" prefWidth="200.0" />
+                                <ComboBox fx:id="cmbCidade" prefWidth="150.0" />
                             </children>
                         </VBox>
                         <Button fx:id="btnConfirma" mnemonicParsing="false" onAction="#btnConfirmaClick" prefWidth="100.0" text="Confirma">

@@ -1,5 +1,7 @@
 package view;
 
+import static config.DAO.alunoRepository;
+import static config.DAO.cidadeRepository;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +11,7 @@ import model.Cidade;
 import model.Disciplina;
 import model.Professor;
 import model.Uf;
-import static config.DAO.disciplinaRepository;
-import static config.DAO.professorRepository;
-import static config.DAO.cidadeRepository;
-import static config.DAO.ufRepository;
+import model.Aluno;
 import model.Matricula;
 
 public class PrincipalController implements Initializable {
@@ -21,6 +20,7 @@ public class PrincipalController implements Initializable {
     Professor professor;
     Cidade cidade;
     Uf uf;
+    Aluno aluno;   
     List<Cidade> lstCit = new ArrayList<Cidade>();
     List<Uf> lstUf = new ArrayList<Uf>();
     List<Disciplina> lstDisc = new ArrayList<Disciplina>();
@@ -29,15 +29,22 @@ public class PrincipalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lstMatricula.add(new Matricula(disciplinaRepository.findByCodigo("123"),70,75,0,2));
+//          LocalDate dtTeste = LocalDate.parse("16/08/1999",df);
+//        System.out.println(df.format(dtTeste));
+//        lstMatricula.add(new Matricula(disciplinaRepository.findByCodigo("123"),70,75,0,2));
+//        lstMatricula.add(new Matricula(disciplinaRepository.findByCodigo("12345"),70,75,0,2));
+
+//        aluno   =   new Aluno("Jussara","email@email.com","21313231",cidadeRepository.findByNome("PORTO AMAZONAS"),lstMatricula);
+//        alunoRepository.save(aluno);
+//        for (Matricula m:lstMatricula){
+//            System.out.println(m.getDisciplina());
+//            System.out.println(m.getMedia());
+//            System.out.println(m.getStatus());
+//            System.out.println("----------------------");
+//            
+//        }
         
-        for (Matricula m:lstMatricula){
-            System.out.println(m.getDisciplina());
-            System.out.println(m.getMedia());
-            System.out.println(m.getStatus());
-            System.out.println("----------------------");
-            
-        }
+      
 //uf = new Uf("Acre", "AC");;;;
 //        ufRepository.save(uf);
 //        uf = new Uf("Alagoas", "AL");
