@@ -8,6 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
 
 <AnchorPane id="AnchorPane" fx:id="anchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CRUDAlunoController">
@@ -39,26 +40,26 @@
                         <VBox spacing="5.0" />
                     </children>
                 </HBox>
-            <HBox spacing="5.0">
-               <children>
-                      <VBox spacing="5.0">
-                          <children>
-                              <Label text="Email" />
-                              <TextField fx:id="txtFldEmail" prefHeight="25.0" prefWidth="330.0" />
-                          </children>
-                      </VBox>
-                  <VBox>
-                     <children>
-                        <Label text="Data de Nascimento">
-                           <padding>
-                              <Insets bottom="5.0" />
-                           </padding>
-                        </Label>
-                        <DatePicker fx:id="dtPckrNascimento" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
+                <HBox spacing="5.0">
+                    <children>
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label text="Email" />
+                                <TextField fx:id="txtFldEmail" prefHeight="25.0" prefWidth="330.0" />
+                            </children>
+                        </VBox>
+                        <VBox>
+                            <children>
+                                <Label text="Data de Nascimento">
+                                    <padding>
+                                        <Insets bottom="5.0" />
+                                    </padding>
+                                </Label>
+                                <DatePicker fx:id="dtPckrNascimento" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
                 <HBox alignment="BOTTOM_LEFT" spacing="5.0">
                     <children>
                         <VBox>
@@ -73,6 +74,23 @@
                                 <ComboBox fx:id="cmbCidade" prefWidth="150.0" />
                             </children>
                         </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                    </padding>
+                </HBox>
+                <VBox fx:id="boxDiciplinas" prefHeight="200.0">
+                    <children>
+                        <Label text="Disciplinas">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <ListSelectionView fx:id="lstSelDisciplina" />
+                    </children>
+                </VBox>
+            <HBox alignment="BOTTOM_RIGHT">
+               <children>
                         <Button fx:id="btnConfirma" mnemonicParsing="false" onAction="#btnConfirmaClick" prefWidth="100.0" text="Confirma">
                             <graphic>
                                 <MaterialDesignIconView glyphName="CHECK" />
@@ -83,11 +101,8 @@
                                 <MaterialDesignIconView glyphName="CLOSE" />
                             </graphic>
                         </Button>
-                    </children>
-                    <padding>
-                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-                    </padding>
-                </HBox>
+               </children>
+            </HBox>
             </children>
             <opaqueInsets>
                 <Insets />

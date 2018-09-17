@@ -24,7 +24,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Professor;
-import model.Disciplina;
 import org.springframework.data.domain.Sort;
 
 /**
@@ -38,27 +37,22 @@ public class CRUDDisciplinaController implements Initializable {
      * Initializes the controller class.
      */
     private DisciplinaController controllerPai;
-
+    private final char separadorDecimal
+            = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
     @FXML
     private TextField txtFldCodigo;
-
     @FXML
     private TextField txtFldNome;
     @FXML
     private TextField txtFldObservacao;
     @FXML
     private TextField txtFldHoras;
-
     @FXML
     private AnchorPane anchorPane;
-
     @FXML
     private Button btnConfirma;
-
     @FXML
     private ComboBox cmbProfessor;
-    private final char separadorDecimal
-            = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
 
     @FXML
     private void btnCancelaClick() {
@@ -102,13 +96,11 @@ public class CRUDDisciplinaController implements Initializable {
                 alert.setContentText(e.getMessage());
             }
             alert.showAndWait();
-
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         btnConfirma.disableProperty().bind(txtFldCodigo.textProperty().isEmpty().
                 or(txtFldNome.textProperty().isEmpty()).or(txtFldHoras.textProperty().isEmpty()));
 //        txtFldHoras.textProperty().addListener(listenerHoras);
@@ -122,14 +114,11 @@ public class CRUDDisciplinaController implements Initializable {
         txtFldHoras.setText(String.valueOf(controllerPai.disciplina.getAulas()));
         cmbProfessor.setItems(FXCollections.observableList(
                 professorRepository.findAll(new Sort(new Sort.Order("nome")))));
-
         if (controllerPai.acao != INCLUIR) {
             cmbProfessor.getSelectionModel().select(controllerPai.disciplina.getProfessor());
         }
-
         txtFldCodigo.setDisable(controllerPai.acao == EXCLUIR);
         txtFldNome.setDisable(controllerPai.acao == EXCLUIR);
-
     }
     private final ChangeListener<? super String> listenerHoras
             = (observable, oldValue, newValue) -> {
@@ -140,7 +129,7 @@ public class CRUDDisciplinaController implements Initializable {
                     txtFldHoras.setText(newValue);
                 }
             };
-      private final ChangeListener<? super String> listenerCodigo
+    private final ChangeListener<? super String> listenerCodigo
             = (observable, oldValue, newValue) -> {
                 if (!newValue.matches("\\d*?")
                 && !newValue.isEmpty()) {

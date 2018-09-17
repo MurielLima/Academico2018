@@ -35,6 +35,7 @@ public class CRUDCidadeProfessorController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private CRUDProfessorController controllerPai;
     @FXML
     private MaterialDesignIconView btnIncluir;
     @FXML
@@ -47,7 +48,6 @@ public class CRUDCidadeProfessorController implements Initializable {
     private AnchorPane anchorPane;
     @FXML
     private Button btnConfirma;
-    private CRUDProfessorController controllerPai;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,11 +76,11 @@ public class CRUDCidadeProfessorController implements Initializable {
         controllerPai.cidade.setUf((Uf) cmbUf.getSelectionModel().getSelectedItem());
         try {
             if (cidadeRepository.countByNomeAndUf(controllerPai.cidade.getNome(), controllerPai.cidade.getUf()) == 1) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setHeaderText("Cadastro de Cidade");
-            alert.setContentText("Já exite uma cidade cadastrada com esse nome nesse estado.");
-            alert.showAndWait();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Cadastro de Cidade");
+                alert.setContentText("Já exite uma cidade cadastrada com esse nome nesse estado.");
+                alert.showAndWait();
             } else {
                 switch (controllerPai.acao) {
                     case INCLUIR:

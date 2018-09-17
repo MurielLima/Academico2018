@@ -14,7 +14,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import model.Disciplina;
-import utility.XPopOver;
 
 /**
  * FXML Controller class
@@ -26,9 +25,9 @@ public class CRUDProfessorDisciplinaController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private ProfessorController controllerPai;
     @FXML
     public TableView<Disciplina> tblViewDisciplinas;
-    private ProfessorController controllerPai;
     @FXML
     private Label lblNomeProfessor;
 

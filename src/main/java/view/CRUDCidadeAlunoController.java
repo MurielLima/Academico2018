@@ -8,7 +8,6 @@ package view;
 import static config.Config.ALTERAR;
 import static config.Config.INCLUIR;
 import static config.DAO.cidadeRepository;
-import static config.DAO.professorRepository;
 import static config.DAO.ufRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
@@ -23,7 +22,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import model.Uf;
 import org.springframework.data.domain.Sort;
-import utility.XPopOver;
 
 /**
  * FXML Controller class
@@ -35,6 +33,7 @@ public class CRUDCidadeAlunoController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private CRUDAlunoController controllerPai;
     @FXML
     private MaterialDesignIconView btnIncluir;
     @FXML
@@ -47,7 +46,6 @@ public class CRUDCidadeAlunoController implements Initializable {
     private AnchorPane anchorPane;
     @FXML
     private Button btnConfirma;
-    private CRUDAlunoController controllerPai;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -90,7 +88,6 @@ public class CRUDCidadeAlunoController implements Initializable {
                         cidadeRepository.save(controllerPai.cidade);
                         break;
                 }
-
                 controllerPai.cmbCidade.setItems(FXCollections.observableList(
                         ufRepository.findAll(new Sort(new Sort.Order("sigla")))));
                 controllerPai.cmbCidade.getSelectionModel().clearSelection();
@@ -104,7 +101,6 @@ public class CRUDCidadeAlunoController implements Initializable {
             alert.setHeaderText("Cadastro de Cidade");
             alert.setContentText(e.getMessage());
             alert.showAndWait();
-
         }
 
     }

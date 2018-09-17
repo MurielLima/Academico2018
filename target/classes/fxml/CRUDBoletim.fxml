@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="150.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CRUDBoletimController">
+    <children>
+        <VBox prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Nome da Disciplina: " />
+                        <Label fx:id="lblNomeDisciplina" text="">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </HBox>
+                <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Label text="1º Sem" />
+                                <TextField fx:id="txtFld1Sem" />
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Label text="2º Sem" />
+                                <TextField fx:id="txtFld2Sem" />
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Label text="Exam" />
+                                <TextField fx:id="txtFldExam" />
+                            </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <Label text="Faltas" />
+                                <TextField fx:id="txtFldFalt" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </HBox>
+            
+            <HBox alignment="TOP_RIGHT" spacing="10.0">
+                <children>
+                    <Button mnemonicParsing="false" onAction="#btnCancelaClick" prefWidth="100.0" text="Cancela">
+                        <graphic>
+                            <MaterialDesignIconView glyphName="CLOSE" />
+                        </graphic>
+                    </Button>
+                    <Button fx:id="btnConfirma" mnemonicParsing="false" onAction="#btnConfirmaClick" prefWidth="100.0" text="Confirma">
+                        <graphic>
+                            <MaterialDesignIconView glyphName="CHECK" />
+                        </graphic>
+                    </Button>
+                </children>
+               <padding>
+                  <Insets bottom="10.0" right="10.0" />
+               </padding>
+            </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

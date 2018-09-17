@@ -1,7 +1,5 @@
 package view;
 
-import static config.DAO.alunoRepository;
-import static config.DAO.cidadeRepository;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

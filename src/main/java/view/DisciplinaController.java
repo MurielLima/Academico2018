@@ -34,10 +34,10 @@ public class DisciplinaController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    public Disciplina disciplina;
+    public char acao;
     @FXML
     public TableView<Disciplina> tblView;
-    public char acao;
-    public Disciplina disciplina;
     @FXML
     private MaterialDesignIconView btnIncluir;
     @FXML
@@ -60,7 +60,6 @@ public class DisciplinaController implements Initializable {
         acao = INCLUIR;
         disciplina = new Disciplina();
         showCRUD();
-
     }
 
     @FXML
@@ -79,7 +78,6 @@ public class DisciplinaController implements Initializable {
 
     @FXML
     private void acPesquisar() {
-
         tblView.setItems(FXCollections.observableList(
                 disciplinaRepository.findByNomeLikeIgnoreCase(txtFldPesquisar.getText())));
     }
@@ -97,10 +95,10 @@ public class DisciplinaController implements Initializable {
 
         switch (acao) {
             case INCLUIR:
-                popOver = new XPopOver(cena, "Inclusão de Disciplina", btnIncluir);
+                popOver = new XPopOver(cena, "Inclusão de Disciplina", null);
                 break;
             case ALTERAR:
-                popOver = new XPopOver(cena, "Alteração de Disciplina", btnAlterar, PopOver.ArrowLocation.TOP_CENTER);
+                popOver = new XPopOver(cena, "Alteração de Disciplina", null, PopOver.ArrowLocation.TOP_CENTER);
                 break;
             case EXCLUIR:
                 popOver = new XPopOver(cena, "Exclusão de Disciplina", btnExcluir);

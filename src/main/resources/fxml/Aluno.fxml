@@ -32,7 +32,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </VBox.margin>    
                 </HBox>
-                <TableView fx:id="tblView" prefHeight="350.0" prefWidth="310.0">
+                <TableView fx:id="tblViewAlunos" onMouseClicked="#tblVwAlunosClick" prefHeight="350.0" prefWidth="310.0">
                     <columns>
                         <TableColumn prefWidth="75.0" text="RA">
                             <cellValueFactory>
@@ -68,6 +68,11 @@
                     <contextMenu>
                         <ContextMenu>
                             <items>
+                                <MenuItem fx:id="mnVerBoletim" mnemonicParsing="false" onAction="#mostraDisciplinasAluno" text="Ver Boletim">
+                                    <graphic>
+                                        <MaterialDesignIconView glyphName="EYE" size="1.1em" />
+                                    </graphic>
+                                </MenuItem>
                                 <MenuItem fx:id="mnIncluir" mnemonicParsing="false" onAction="#acIncluir" text="Incluir">
                                     <graphic>
                                         <MaterialDesignIconView glyphName="PLUS" size="1.1em" />

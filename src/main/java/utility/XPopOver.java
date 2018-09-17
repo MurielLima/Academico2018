@@ -11,6 +11,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import static javafx.stage.Modality.APPLICATION_MODAL;
+import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 
 /**
@@ -26,6 +30,7 @@ public class XPopOver {
         posicao = PopOver.ArrowLocation.TOP_LEFT;
         localXPopOver(arquivoFXML, titulo, node, posicao);
     }
+
     public XPopOver(String arquivoFXML, String titulo, Node node,
             PopOver.ArrowLocation posicao) {
         localXPopOver(arquivoFXML, titulo, node, posicao);
@@ -37,17 +42,25 @@ public class XPopOver {
             loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(arquivoFXML));
             loader.setResources(i18n);
-
-            PopOver popOver = new PopOver();
-            popOver.setContentNode(loader.load());
-            popOver.setAutoFix(true);
-            popOver.setAutoHide(true);
-            popOver.setHideOnEscape(true);
-            popOver.setHeaderAlwaysVisible(true);
-            popOver.setArrowLocation(posicao);
-            popOver.setTitle(titulo);
-            popOver.show(node);
-
+            if (node == null) {
+                Scene scene =   new Scene(loader.load());
+                Stage stage =new Stage();
+                stage.setScene(scene);
+                stage.setTitle(titulo);
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+            }else{
+                PopOver popOver = new PopOver();
+                popOver.setContentNode(loader.load());
+                popOver.setAutoFix(true);
+                popOver.setAutoHide(true);
+                popOver.setHideOnEscape(true);
+                popOver.setHeaderAlwaysVisible(true);
+                popOver.setArrowLocation(posicao);
+                popOver.setTitle(titulo);
+                popOver.show(node);
+            }
         } catch (IOException ex) {
             Logger.getLogger(XPopOver.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,7 +69,5 @@ public class XPopOver {
     public FXMLLoader getLoader() {
         return loader;
     }
-
- 
 
 }

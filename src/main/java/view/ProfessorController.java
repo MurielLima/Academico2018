@@ -16,7 +16,6 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -34,11 +33,10 @@ public class ProfessorController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @FXML
-    public TableView<Professor> tblView;
     public char acao;
     public Professor professor;
-
+    @FXML
+    public TableView<Professor> tblView;
     @FXML
     private MaterialDesignIconView btnIncluir;
     @FXML
@@ -64,32 +62,25 @@ public class ProfessorController implements Initializable {
     private void acIncluir() {
         acao = INCLUIR;
         professor = new Professor();
-
         showCRUD();
-
     }
 
     @FXML
     private void acAlterar() {
         acao = ALTERAR;
-
         professor = tblView.getSelectionModel().getSelectedItem();
         showCRUD();
-
     }
 
     @FXML
     private void acExcluir() {
         acao = EXCLUIR;
-
         professor = tblView.getSelectionModel().getSelectedItem();
         showCRUD();
-
     }
 
     @FXML
     private void acPesquisar() {
-
         tblView.setItems(FXCollections.observableList(
                 professorRepository.findByNomeLikeIgnoreCase(txtFldPesquisar.getText())));
     }
@@ -104,10 +95,9 @@ public class ProfessorController implements Initializable {
     @FXML
     private void acDisciplinas() {
         professor = tblView.getSelectionModel().getSelectedItem();
-
         String cena = "/fxml/CRUDProfessorDisciplina.fxml";
         XPopOver popOver;
-        popOver = new XPopOver(cena, "Lista de disciplinas", btnDisciplinas);
+        popOver = new XPopOver(cena, "Lista de disciplinas", null);
         CRUDProfessorDisciplinaController controllerFilho = popOver.getLoader().getController();
         controllerFilho.setCadastroController(this);
     }
@@ -118,10 +108,10 @@ public class ProfessorController implements Initializable {
 
         switch (acao) {
             case INCLUIR:
-                popOver = new XPopOver(cena, "Inclusão de Professor", btnIncluir);
+                popOver = new XPopOver(cena, "Inclusão de Professor", null);
                 break;
             case ALTERAR:
-                popOver = new XPopOver(cena, "Alteração de Professor", btnAlterar);
+                popOver = new XPopOver(cena, "Alteração de Professor", null);
                 break;
             case EXCLUIR:
                 popOver = new XPopOver(cena, "Exclusão de Professor", btnExcluir);

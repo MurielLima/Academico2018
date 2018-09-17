@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CRUDAlunoController">
+
+    <children>
+        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox>
+                    <children>
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label text="RA" />
+                                <TextField fx:id="txtFldCodigo" prefWidth="70.0" />
+                            </children>
+                            <HBox.margin>
+                                <Insets left="5.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label text="Nome" />
+                                <TextField fx:id="txtFldNome" prefHeight="25.0" prefWidth="330.0" />
+                            </children>
+
+                            <HBox.margin>
+                                <Insets left="5.0" right="5.0" />
+                            </HBox.margin>
+                        </VBox>
+                        <VBox spacing="5.0" />
+                    </children>
+                </HBox>
+                <HBox spacing="5.0">
+                    <children>
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label text="Email" />
+                                <TextField fx:id="txtFldEmail" prefHeight="25.0" prefWidth="330.0" />
+                            </children>
+                        </VBox>
+                        <VBox>
+                            <children>
+                                <Label text="Data de Nascimento">
+                                    <padding>
+                                        <Insets bottom="5.0" />
+                                    </padding>
+                                </Label>
+                                <DatePicker fx:id="dtPckrNascimento" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <HBox alignment="BOTTOM_LEFT" spacing="5.0">
+                    <children>
+                        <VBox>
+                            <children>
+                                <HBox>
+                                    <children>
+                                        <Label text="Cidade" />
+                                        <MaterialDesignIconView fx:id="btnIncluir" glyphName="PLUS" onMouseClicked="#acIncluir" size="1.3em" />
+                                        <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL" onMouseClicked="#acAlterar" size="1.3em" />
+                                    </children>
+                                </HBox>
+                                <ComboBox fx:id="cmbCidade" prefWidth="150.0" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                    </padding>
+                </HBox>
+                <VBox fx:id="boxDiciplinas" prefHeight="200.0">
+                    <children>
+                        <Label text="Disciplinas">
+                            <VBox.margin>
+                                <Insets left="5.0" />
+                            </VBox.margin>
+                        </Label>
+                        <ListSelectionView fx:id="lstSelDisciplina" />
+                    </children>
+                </VBox>
+            <HBox alignment="BOTTOM_RIGHT">
+               <children>
+                        <Button fx:id="btnConfirma" mnemonicParsing="false" onAction="#btnConfirmaClick" prefWidth="100.0" text="Confirma">
+                            <graphic>
+                                <MaterialDesignIconView glyphName="CHECK" />
+                            </graphic>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#btnCancelaClick" prefWidth="100.0" text="Cancela">
+                            <graphic>
+                                <MaterialDesignIconView glyphName="CLOSE" />
+                            </graphic>
+                        </Button>
+               </children>
+            </HBox>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

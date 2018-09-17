@@ -109,7 +109,7 @@ public class Matricula {
 
     public String getStatus() {
         if (getPercFrequencia() < 75.0) {
-            return "Reprovado por falta";
+            return "Reprovado";
         } else if (getMedia() >= 70) {
             return "Aprovado";
         } else if (getMedia() >= 50) {
