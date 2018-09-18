@@ -66,6 +66,8 @@ public class CRUDBoletimController implements Initializable {
     @FXML
     private void btnCancelaClick() {
         controllerPai.tblViewBoletim.requestFocus();
+        controllerPai.tblViewBoletim.refresh();
+        controllerPai.tblViewBoletim.getSelectionModel().clearSelection();
         anchorPane.getScene().getWindow().hide();
     }
 
@@ -76,7 +78,10 @@ public class CRUDBoletimController implements Initializable {
         controllerPai.matricula.setNotaExam(Integer.parseInt(txtFldExam.getText()));
         controllerPai.matricula.setFaltas(Integer.parseInt(txtFldFalt.getText()));
         List<Matricula> lstTemp = new ArrayList<>();
-        lstTemp.add(controllerPai.matricula);
+//        lstTemp.add(controllerPai.matricula);
+        for (Matricula m : controllerPai.aluno.getMatriculas()) {
+            lstTemp.add(m);
+        }
         controllerPai.aluno.setMatriculas(lstTemp);
         try {
             alunoRepository.save(controllerPai.aluno);

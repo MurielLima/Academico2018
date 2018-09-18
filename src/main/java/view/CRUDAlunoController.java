@@ -96,24 +96,20 @@ public class CRUDAlunoController implements Initializable {
         controllerPai.aluno.setEmail(txtFldEmail.getText());
         controllerPai.aluno.setDataNascimento(dtPckrNascimento.getValue());
         List<Matricula> lstTemp = new ArrayList<>();
+        
         if (controllerPai.aluno.getMatriculas() != null) {
             for (Matricula ant : controllerPai.aluno.getMatriculas()) {
                 if (lstSelDisciplina.getTargetItems().contains(ant.getDisciplina())) {
                     lstTemp.add(ant);
                     lstSelDisciplina.getTargetItems().remove(ant.getDisciplina());
                 }
-                lstTemp.add(ant);
             }
         }
-        if (controllerPai.aluno.getMatriculas() != null) {
-            for (Matricula m : controllerPai.aluno.getMatriculas()) {
-                lstTemp.add(m);
+            for (Disciplina nv : lstSelDisciplina.getTargetItems()) {
+                Matricula mat = new Matricula(nv, 0, 0, 0, 0);
+                lstTemp.add(mat);
             }
-        }
-        for (Disciplina nv : lstSelDisciplina.getTargetItems()) {
-            Matricula mat = new Matricula(nv, 0, 0, 0, 0);
-            lstTemp.add(mat);
-        }
+       
         controllerPai.aluno.setMatriculas(lstTemp);
         try {
             switch (controllerPai.acao) {
