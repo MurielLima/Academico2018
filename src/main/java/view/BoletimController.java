@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
@@ -48,6 +49,7 @@ public class BoletimController implements Initializable {
         aluno = controllerPai.aluno;
         lblNomeAluno.setText(controllerPai.aluno.getNome());
         tblViewBoletim.setItems(FXCollections.observableList(controllerPai.aluno.getMatriculas()));
+        
     }
 
     @FXML
@@ -83,7 +85,18 @@ public class BoletimController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+                tblViewBoletim.setRowFactory(tableView
+                -> {
+            TableRow<Matricula> row = new TableRow<>();
+            if(true==true){
+            row.itemProperty().addListener((observable, oldValue, newValue) -> {
+                
+                    row.getStyleClass().add("aprovado");
+            });
+            };
+            return row;
+        });
+ 
     }
 
 }

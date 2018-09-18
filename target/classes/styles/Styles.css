@@ -1,3 +1,7 @@
 .button {
     -fx-font-weight: bold;
 }
+.aprovado{
+    /*-fx-mid-text-color:green;*/
+    -fx-font-weight: bold;
+}

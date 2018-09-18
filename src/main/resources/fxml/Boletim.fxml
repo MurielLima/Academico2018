@@ -10,7 +10,8 @@
 <?import javafx.scene.control.cell.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BoletimController">
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" styleClass="mainFxmlClass" prefHeight="400.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BoletimController">
     <children>
         <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -52,12 +53,17 @@
                                 <PropertyValueFactory property="notaExam" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="Faltas">
+                        <TableColumn prefWidth="75.0" text="Media">
                             <cellValueFactory>
-                                <PropertyValueFactory property="faltas" />
+                                <PropertyValueFactory property="media" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="Situação">
+                        <TableColumn prefWidth="100.0" text="Frequencia(%)">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="percFrequencia" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="150.0" text="Situação">
                             <cellValueFactory>
                                 <PropertyValueFactory property="status" />
                             </cellValueFactory>

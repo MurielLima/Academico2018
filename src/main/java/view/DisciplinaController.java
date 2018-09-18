@@ -118,6 +118,7 @@ public class DisciplinaController implements Initializable {
         mnAlterar.visibleProperty().bind(btnAlterar.visibleProperty());
         mnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
         btnPesquisar.disableProperty().bind(txtFldPesquisar.textProperty().isEmpty());
+        
 
     }
 

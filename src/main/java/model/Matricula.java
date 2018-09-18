@@ -32,7 +32,7 @@ public class Matricula {
         setNota2Sem(nota2Sem);
         setNotaExam(notaExam);
         setFaltas(faltas);
-        
+
     }
 
     public Disciplina getDisciplina() {
@@ -88,10 +88,16 @@ public class Matricula {
     }
 
     public Double getPercFrequencia() {
+        Double a = 0.0;
         if (disciplina != null && disciplina.getAulas() > 0) {
-            return 100 - (faltas / disciplina.getAulas() * 100.0);
+            a = 100 - (faltas / disciplina.getAulas() * 100.0);
         }
-        return 0.0;
+        if (a > 100) {
+            a = 100.0;
+        } else if (a < 0) {
+            a = 0.0;
+        }
+        return a;
 
     }
 
@@ -109,7 +115,7 @@ public class Matricula {
 
     public String getStatus() {
         if (getPercFrequencia() < 75.0) {
-            return "Reprovado";
+            return "Reprovado por falta";
         } else if (getMedia() >= 70) {
             return "Aprovado";
         } else if (getMedia() >= 50) {
