@@ -30,7 +30,7 @@
                         <Insets left="10.0" />
                     </padding>
                 </HBox>
-                <TableView fx:id="tblViewBoletim" onMouseClicked="#mostraDisciplinasAluno" prefHeight="350.0" prefWidth="310.0">
+                <TableView fx:id="tblViewBoletim" onMouseClicked="#tblVwDisciplinaClick" prefHeight="350.0" prefWidth="310.0">
                     <columns>
                         <TableColumn maxWidth="350.0" prefWidth="234.0" text="Nome">
                             <cellValueFactory>
