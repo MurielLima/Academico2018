@@ -42,14 +42,13 @@ public class BoletimController implements Initializable {
     private Button btnConfirma;
     @FXML
     private AnchorPane anchorPane;
-    
 
     public void setCadastroController(AlunoController controllerPai) {
         this.controllerPai = controllerPai;
         aluno = controllerPai.aluno;
         lblNomeAluno.setText(controllerPai.aluno.getNome());
         tblViewBoletim.setItems(FXCollections.observableList(controllerPai.aluno.getMatriculas()));
-        
+
     }
 
     @FXML
@@ -63,6 +62,7 @@ public class BoletimController implements Initializable {
             }
         }
     }
+
     @FXML
     private void mostraDisciplinasAluno() {
         matricula = tblViewBoletim.getSelectionModel().getSelectedItem();
@@ -85,18 +85,23 @@ public class BoletimController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-                tblViewBoletim.setRowFactory(tableView
+        tblViewBoletim.setRowFactory(tableView
                 -> {
             TableRow<Matricula> row = new TableRow<>();
-            if(true==true){
+
             row.itemProperty().addListener((observable, oldValue, newValue) -> {
-                
+                if (newValue != null && (newValue.getStatus().contains("Aprovado"))) {
                     row.getStyleClass().add("aprovado");
+                } else {
+                    row.getStyleClass().add("reprovado");
+
+                }
+
             });
-            };
+
             return row;
         });
- 
+
     }
 
 }
