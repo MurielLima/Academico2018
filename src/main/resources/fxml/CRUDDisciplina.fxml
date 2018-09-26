@@ -56,6 +56,14 @@
                         <TextField fx:id="txtFldHoras" />
                      </children>
                   </VBox>
+                  <VBox fx:id="chckBxSemestral">
+                     <children>
+                        <CheckBox fx:id="chckBxSemestral" mnemonicParsing="false" text="Semestral" />
+                     </children>
+                     <HBox.margin>
+                        <Insets top="15.0" />
+                     </HBox.margin>
+                  </VBox>
                </children>
             </HBox>
                 <HBox alignment="BOTTOM_CENTER" spacing="5.0">

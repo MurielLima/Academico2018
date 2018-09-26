@@ -12,6 +12,8 @@ public class DAO {
     public static CidadeRepository cidadeRepository = ctx.getBean(CidadeRepository.class);
     public static UfRepository ufRepository = ctx.getBean(UfRepository.class);
      public static AlunoRepository alunoRepository = ctx.getBean(AlunoRepository.class);
+     public static DepartamentoRepository departamentoRepository = ctx.getBean(DepartamentoRepository.class);
+     public static TurnoRepository turnoRepository = ctx.getBean(TurnoRepository.class);
 
 
 }

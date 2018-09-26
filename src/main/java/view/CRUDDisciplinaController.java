@@ -20,8 +20,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import model.Professor;
 import org.springframework.data.domain.Sort;
@@ -53,6 +56,11 @@ public class CRUDDisciplinaController implements Initializable {
     private Button btnConfirma;
     @FXML
     private ComboBox cmbProfessor;
+    @FXML
+    private CheckBox chckBxSemestral;
+    @FXML
+    private ToggleGroup rdioGroupSemestral;
+    
 
     @FXML
     private void btnCancelaClick() {
@@ -67,6 +75,7 @@ public class CRUDDisciplinaController implements Initializable {
         controllerPai.disciplina.setObservacao(txtFldObservacao.getText());
         controllerPai.disciplina.setAulas(Integer.parseInt(txtFldHoras.getText()));
         controllerPai.disciplina.setProfessor((Professor) cmbProfessor.getSelectionModel().getSelectedItem());
+        controllerPai.disciplina.setSemestral(chckBxSemestral.isSelected());
         try {
             switch (controllerPai.acao) {
                 case INCLUIR:
@@ -112,6 +121,11 @@ public class CRUDDisciplinaController implements Initializable {
         txtFldCodigo.setText(controllerPai.disciplina.getCodigo());
         txtFldNome.setText(controllerPai.disciplina.getNome());
         txtFldHoras.setText(String.valueOf(controllerPai.disciplina.getAulas()));
+        if(controllerPai.disciplina.isSemestral()){
+            chckBxSemestral.setSelected(true);
+        }else{
+            chckBxSemestral.setSelected(false);
+        }
         cmbProfessor.setItems(FXCollections.observableList(
                 professorRepository.findAll(new Sort(new Sort.Order("nome")))));
         if (controllerPai.acao != INCLUIR) {

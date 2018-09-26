@@ -7,6 +7,7 @@ package model;
 
 import static config.Config.df;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.data.annotation.Id;
@@ -31,6 +32,7 @@ public class Aluno {
     private String ra;
 
     private LocalDate dataNascimento;
+    private LocalDate dataCadastro;
     @DBRef
     private Cidade cidade;
     private List<Matricula> matriculas = new ArrayList<>();
@@ -43,7 +45,9 @@ public class Aluno {
         this.email = email;
         this.ra = ra;
         this.cidade = cidade;
+        setDataCadastro(LocalDate.now());
     }
+
     public Aluno(String nome, String email, String ra, Cidade cidade,
             List<Matricula> matriculas) {
         this.nome = nome;
@@ -51,8 +55,18 @@ public class Aluno {
         this.ra = ra;
         this.cidade = cidade;
         this.matriculas = matriculas;
+        setDataCadastro(LocalDate.now());
     }
-
+   public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade
+            ) {
+        this.nome = nome;
+        this.email = email;
+        this.ra = ra;
+        this.dataNascimento = dataNascimento;
+        this.cidade = cidade;
+  
+        setDataCadastro(LocalDate.now());
+    }
     public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade,
             List<Matricula> matriculas) {
         this.nome = nome;
@@ -61,6 +75,29 @@ public class Aluno {
         this.dataNascimento = dataNascimento;
         this.cidade = cidade;
         this.matriculas = matriculas;
+        setDataCadastro(LocalDate.now());
+    }
+
+    public int getIdade() {
+        LocalDate today = LocalDate.now();
+
+        dataNascimento = getDataNascimento();
+        LocalDate dataHoje = today;
+
+        Period periodo = Period.between(dataNascimento, dataHoje);
+        return periodo.getYears();
+    }
+
+    public String getDataCadastroFormat() {
+        return dataCadastro.format(df);
+    }
+
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public int getDisciplinasQtd() {

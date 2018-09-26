@@ -7,37 +7,73 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Disciplina {
- 
+
     @Id
     private String id;
-    
+
     @DBRef
     private Professor professor;
     @Indexed(unique = true)
     private String codigo;
-    
+
     private String nome;
     private int aulas;
     private String observacao;
+    private boolean semestral;
+    @DBRef
+    private Turno turno;
 
     public Disciplina() {
     }
 
-    public Disciplina(Professor professor, String codigo, String nome, int aulas, String observacao) {
+    public Disciplina(Professor professor, String codigo, String nome, int aulas, String observacao, boolean semestral) {
         this.professor = professor;
         this.codigo = codigo;
         this.nome = nome;
         this.aulas = aulas;
         this.observacao = observacao;
+        setSemestral(semestral);
     }
 
-    
     public Disciplina(String codigo, String nome, int aulas, String observacao) {
         this.codigo = codigo;
         this.nome = nome;
         this.aulas = aulas;
         this.observacao = observacao;
+        setSemestral(semestral);
+    }
 
+    public Disciplina(Professor professor, String codigo, String nome, int aulas, String observacao, boolean semestral, Turno turno) {
+        this.professor = professor;
+        this.codigo = codigo;
+        this.nome = nome;
+        this.aulas = aulas;
+        this.observacao = observacao;
+        this.semestral = semestral;
+        this.turno = turno;
+    }
+
+  
+
+    public boolean isSemestral() {
+
+        if (semestral) {
+            return semestral;
+        } else {
+            return false;
+        }
+    }
+
+    public void setSemestral(boolean semestral) {
+        this.semestral = semestral;
+    }
+
+    public Turno getTurno() {
+        return turno;
+    }
+
+    public void setTurno(Turno turno) {
+        this.turno = turno;
     }
 
     public Professor getProfessor() {
@@ -47,14 +83,16 @@ public class Disciplina {
     public void setProfessor(Professor professor) {
         this.professor = professor;
     }
-    public String getPrimeiroNome(){
-        if(professor!=null){
-           String[] array = professor.getNome().split(" ");
-           return array[0];
-        }else{
+
+    public String getPrimeiroNome() {
+        if (professor != null) {
+            String[] array = professor.getNome().split(" ");
+            return array[0];
+        } else {
             return "";
         }
     }
+
     public String getCodigo() {
         return codigo;
     }
@@ -91,7 +129,7 @@ public class Disciplina {
     public String toString() {
         return nome;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;

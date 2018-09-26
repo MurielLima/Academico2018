@@ -14,6 +14,7 @@ import static config.DAO.disciplinaRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -95,6 +96,7 @@ public class CRUDAlunoController implements Initializable {
         controllerPai.aluno.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
         controllerPai.aluno.setEmail(txtFldEmail.getText());
         controllerPai.aluno.setDataNascimento(dtPckrNascimento.getValue());
+        controllerPai.aluno.setDataCadastro(LocalDate.now());
         List<Matricula> lstTemp = new ArrayList<>();
         
         if (controllerPai.aluno.getMatriculas() != null) {

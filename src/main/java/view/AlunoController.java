@@ -11,6 +11,10 @@ import static config.Config.INCLUIR;
 import static config.DAO.alunoRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -18,11 +22,13 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 import model.Aluno;
+import model.Matricula;
 import org.springframework.data.domain.Sort;
 import utility.XPopOver;
 
@@ -36,12 +42,12 @@ public class AlunoController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     public char acao;
     public Aluno aluno;
     @FXML
     public TableView<Aluno> tblViewAlunos;
-    @FXML MenuItem mnVerBoletim;
+    @FXML
+    MenuItem mnVerBoletim;
     @FXML
     private MaterialDesignIconView btnIncluir;
     @FXML
@@ -65,11 +71,12 @@ public class AlunoController implements Initializable {
         if (event.getEventType() == MOUSE_CLICKED) {
             me = (MouseEvent) event;
             if (me.getClickCount() == 2 && tblViewAlunos.getSelectionModel().getSelectedItem() != null) {
-                aluno=tblViewAlunos.getSelectionModel().getSelectedItem();
+                aluno = tblViewAlunos.getSelectionModel().getSelectedItem();
                 mostraDisciplinasAluno();
             }
         }
     }
+
     @FXML
     private void mostraDisciplinasAluno() {
         aluno = tblViewAlunos.getSelectionModel().getSelectedItem();
@@ -92,6 +99,20 @@ public class AlunoController implements Initializable {
         acao = ALTERAR;
         aluno = tblViewAlunos.getSelectionModel().getSelectedItem();
         showCRUD();
+    }
+
+    @FXML
+    private void btnFiltrarMaiorClick() {
+        List<Aluno> lstTemp = new ArrayList<Aluno>();
+        List<Aluno> lstAlunos = new ArrayList<Aluno>();
+        lstAlunos = alunoRepository.findAll();
+        for (Aluno a : lstAlunos) {
+            if (a.getIdade() < 18) {
+                lstTemp.add(a);
+            }
+        }
+        tblViewAlunos.setItems(FXCollections.observableList(lstTemp));
+
     }
 
     @FXML
@@ -144,6 +165,24 @@ public class AlunoController implements Initializable {
         mnExcluir.visibleProperty().bind(btnAlterar.visibleProperty());
         mnVerBoletim.visibleProperty().bind(btnAlterar.visibleProperty());
         btnPesquisar.disableProperty().bind(txtFldPesquisar.textProperty().isEmpty());
+        
+         tblViewAlunos.setRowFactory(tableView
+                -> {
+            TableRow<Aluno> row = new TableRow<>();
+
+            row.itemProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null && newValue.getDataNascimento().getMonth()==LocalDate.now().getMonth()) {
+                    row.getStyleClass().add("aniversariante");
+                } else {
+                    row.getStyleClass().remove("aniversariante");
+
+                }
+
+            });
+
+            return row;
+        });
+
     }
 
 }

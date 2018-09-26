@@ -27,6 +27,7 @@
                         </TextField>
                         <MaterialDesignIconView fx:id="btnPesquisar" glyphName="MAGNIFY" onMouseClicked="#acPesquisar" size="1.3em" />
                         <MaterialDesignIconView fx:id="btnLimpar" glyphName="BROOM" onMouseClicked="#acLimpar" size="1.3em" />
+                  <Button mnemonicParsing="false" onAction="#btnFiltrarMaiorClick" text="Filtrar Menor 18" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -62,6 +63,11 @@
                         <TableColumn maxWidth="150.0" prefWidth="150.0" text="Cidade">
                             <cellValueFactory>
                                 <PropertyValueFactory property="cidade" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="150.0" prefWidth="75.0" text="Data Cadastro">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="dataCadastroFormat" />
                             </cellValueFactory>
                         </TableColumn>
                     </columns>

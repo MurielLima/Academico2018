@@ -7,20 +7,30 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Professor {
- 
+
     @Id
     private String id;
-    
+
     private String nome;
     private String email;
-    
+
     @Indexed(unique = true)
     private String cpf;
-    
+
     @DBRef
     private Cidade cidade;
+    @DBRef
+    private Departamento departamento;
 
     public Professor() {
+    }
+
+    public Professor(String nome, String email, String cpf, Cidade cidade, Departamento departamento) {
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.cidade = cidade;
+        this.departamento = departamento;
     }
 
     public Professor(String nome, String email, String cpf, Cidade cidade) {
@@ -34,6 +44,17 @@ public class Professor {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
+    }
+
+    public Departamento getDepartamento() {
+        if (departamento != null) {
+            return departamento;
+        }
+        return null;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
     public String getNome() {
@@ -67,7 +88,7 @@ public class Professor {
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -97,6 +118,5 @@ public class Professor {
     public String toString() {
         return nome;
     }
-    
-    
+
 }

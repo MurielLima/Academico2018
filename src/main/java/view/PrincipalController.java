@@ -1,6 +1,14 @@
 package view;
 
+import static config.DAO.alunoRepository;
+import static config.DAO.cidadeRepository;
+import static config.DAO.departamentoRepository;
+import static config.DAO.disciplinaRepository;
+import static config.DAO.professorRepository;
+import static config.DAO.turnoRepository;
+import static config.DAO.ufRepository;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -10,7 +18,9 @@ import model.Disciplina;
 import model.Professor;
 import model.Uf;
 import model.Aluno;
+import model.Departamento;
 import model.Matricula;
+import model.Turno;
 
 public class PrincipalController implements Initializable {
 
@@ -19,6 +29,9 @@ public class PrincipalController implements Initializable {
     Cidade cidade;
     Uf uf;
     Aluno aluno;   
+    List<Turno> lstTurno = new ArrayList<Turno>();
+    List<Departamento> lstDep = new ArrayList<Departamento>();
+    List<Aluno> lstAlu = new ArrayList<Aluno>();
     List<Cidade> lstCit = new ArrayList<Cidade>();
     List<Uf> lstUf = new ArrayList<Uf>();
     List<Disciplina> lstDisc = new ArrayList<Disciplina>();
@@ -27,6 +40,93 @@ public class PrincipalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+//        /**
+//         * Encontra as Siglas na tabela uf e cria um link com a cidade
+//         */
+//        uf =  ufRepository.findBySiglaLikeIgnoreCase("PR");
+//        
+//        cidade = new Cidade("Irati",uf);
+//        cidadeRepository.insert(cidade);
+//        
+//        cidade = new Cidade("Palmeira",uf);
+//        cidadeRepository.insert(cidade);
+//        
+//        cidade = new Cidade("Curitiba",uf);
+//        cidadeRepository.insert(cidade);
+//        
+//        cidade = new Cidade("Pirai",uf);
+//        cidadeRepository.insert(cidade);
+//        
+////        
+////       
+//        int tamA;
+//        tamA=10;
+//        String nomes[]=new String[tamA];
+//        
+//        nomes[0]="Eduardo";
+//        nomes[1]="Muriel";
+//        nomes[2]="Lucas";
+//        nomes[3]="Joao";
+//        nomes[4]="Marcelo";
+//        nomes[5]="Carlos";
+//        nomes[6]="luciano";
+//        nomes[7]="Gabriela";
+//        nomes[8]="Rafaela";
+//        nomes[9]="ELias";
+//        
+//        for(int i=0;i<tamA;i++){
+//            alunoRepository.insert(new Aluno(nomes[i],nomes[i]+"@email.com","1"+i*323,LocalDate.now().minusYears(i*2),cidadeRepository.findByNome("Curitiba")));
+////            professorRepository.insert(new Professor(nomes[i],nomes[i]+"@ig.com","9"+i*541, cidadeRepository.findByNome("Palmeira")));
+//        }
+     
+//        lstAlu  =   alunoRepository.findAll();
+//        for (Aluno a:lstAlu){
+//            if(a.getDataCadastro()!=null){
+//            a.setDataCadastro(LocalDate.now());
+//            }
+//            try{
+//                alunoRepository.save(a);
+//            }catch(Exception e){
+//                System.out.println("Erro ao cadaastrar");
+//            }
+//        }
+//        lstDisc  =   disciplinaRepository.findAll();
+//        for (Disciplina a:lstDisc){
+//            a.setSemestral(true);
+//            try{
+//                disciplinaRepository.save(a);
+//            }catch(Exception e){
+//                System.out.println("Erro ao cadaastrar");
+//            }
+//        }        
+//        lstDep.add(new Departamento("DEINFO","Departamento de Informatica"));
+//        lstDep.add((new Departamento("SCATE","Setor de Ciencia Agrariaas e de Tecnologia")));
+//        lstDep.add((new Departamento("NTI","Nucleo de Tecnologia")));
+//        
+//        for(Departamento d:lstDep){
+//            departamentoRepository.insert(d);
+//        }
+//        
+//        lstTurno.add(new Turno("Matutino",'M'));
+//        lstTurno.add(new Turno("Vespertino",'V'));
+//        lstTurno.add(new Turno("Noturno",'N'));
+//        lstTurno.add(new Turno("Integral",'I'));
+//        for (Turno a:lstTurno){
+//          
+//            try{
+//                turnoRepository.insert(a);
+//            }catch(Exception e){
+//                System.out.println("Erro ao cadaastrar");
+//            }
+//        }        
+//        lstDep.add(new Departamento("DEINFO","Departamento de Informatica"));
+//        lstDep.add((new Departamento("SCATE","Setor de Ciencia Agrariaas e de Tecnologia")));
+//        lstDep.add((new Departamento("NTI","Nucleo de Tecnologia")));
+//        
+//        for(Departamento d:lstDep){
+//            departamentoRepository.insert(d);
+//        }
+//       
 //          LocalDate dtTeste = LocalDate.parse("16/08/1999",df);
 //        System.out.println(df.format(dtTeste));
 //        lstMatricula.add(new Matricula(disciplinaRepository.findByCodigo("123"),70,75,0,2));
@@ -120,10 +220,10 @@ public class PrincipalController implements Initializable {
 //        ufRepository.save(uf);
 //        uf = new Uf("Rio Grande do Norte","RN");
 //        ufRepository.save(uf);
-//         /**
-//         * Encontra as Siglas na tabela uf e cria um link com a cidade
-//         */
-//        uf =  ufRepository.findBySiglaLikeIgnoreCase("PR");
+         /**
+         * Encontra as Siglas na tabela uf e cria um link com a cidade
+         */
+//        uf =  ufRepository.findBySiglaLikeIgnoreCase("PR");;
 //        
 //        cidade = new Cidade("Porto Amazonas",uf);
 //        cidadeRepository.save(cidade);
