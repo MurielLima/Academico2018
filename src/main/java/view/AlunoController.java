@@ -102,6 +102,20 @@ public class AlunoController implements Initializable {
     }
 
     @FXML
+    private void btnFiltrarMaior65AnosClick() {
+        List<Aluno> lstTemp = new ArrayList<Aluno>();
+        List<Aluno> lstAlunos = new ArrayList<Aluno>();
+        lstAlunos = alunoRepository.findAll();
+        for (Aluno a : lstAlunos) {
+            if (a.getIdade() >= 65) {
+                lstTemp.add(a);
+            }
+        }
+        tblViewAlunos.setItems(FXCollections.observableList(lstTemp));
+
+    }
+
+    @FXML
     private void btnFiltrarMaiorClick() {
         List<Aluno> lstTemp = new ArrayList<Aluno>();
         List<Aluno> lstAlunos = new ArrayList<Aluno>();

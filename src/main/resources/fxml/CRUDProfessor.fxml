@@ -45,6 +45,12 @@
                               <TextField fx:id="txtFldEmail" prefWidth="200.0" />
                           </children>
                       </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="Data de Cadastro:" />
+                        <Label fx:id="lblDataCadastro" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
                 <HBox alignment="BOTTOM_CENTER" spacing="5.0">

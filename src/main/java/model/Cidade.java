@@ -82,7 +82,7 @@ public class Cidade {
 
     @Override
     public String toString() {
-        return nome + " - " + uf.getSigla();
+        return nome ;
     }
 
 }

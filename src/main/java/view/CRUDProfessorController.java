@@ -14,6 +14,7 @@ import static config.DAO.disciplinaRepository;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
 import java.text.DecimalFormatSymbols;
+import java.time.LocalDate;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
@@ -61,6 +63,8 @@ public class CRUDProfessorController implements Initializable {
     private MaterialDesignIconView btnIncluir;
     @FXML
     private Button btnConfirma;
+    @FXML
+    private Label lblDataCadastro;
 
     @FXML
     private void btnCancelaClick() {
@@ -74,9 +78,11 @@ public class CRUDProfessorController implements Initializable {
         controllerPai.professor.setNome(txtFldNome.getText());
         controllerPai.professor.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
         controllerPai.professor.setEmail(txtFldEmail.getText());
+        controllerPai.professor.setAtivo(true);
         try {
             switch (controllerPai.acao) {
                 case INCLUIR:
+                    controllerPai.professor.setDataCadastro(LocalDate.now());
                     professorRepository.insert(controllerPai.professor);
                     break;
                 case ALTERAR:
@@ -133,6 +139,7 @@ public class CRUDProfessorController implements Initializable {
         txtFldCodigo.setText(controllerPai.professor.getCpf());
         txtFldNome.setText(controllerPai.professor.getNome());
         txtFldEmail.setText(controllerPai.professor.getEmail());
+        lblDataCadastro.setText(controllerPai.professor.getDataCadastroFormat());
         cmbCidade.setItems(FXCollections.observableList(
                 cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
         if (controllerPai.acao != INCLUIR) {

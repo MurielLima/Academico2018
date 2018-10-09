@@ -74,6 +74,12 @@
             <artifactId>fontawesomefx</artifactId>
             <version>8.6</version>
         </dependency>
+            
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20141113</version>
+        </dependency>
     </dependencies>
 
 </project>

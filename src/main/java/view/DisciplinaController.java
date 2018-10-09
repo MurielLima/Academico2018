@@ -83,6 +83,15 @@ public class DisciplinaController implements Initializable {
     }
 
     @FXML
+    private void btnMostraAlunosClick() {
+        String cena = "/fxml/DisciplinaAlunos.fxml";
+        XPopOver popOver = null;
+        disciplina = tblView.getSelectionModel().getSelectedItem();
+         popOver = new XPopOver(cena, "Alunos", null);
+        DisciplinaAlunosController controllerFilho = popOver.getLoader().getController();
+        controllerFilho.setCadastroController(this);
+    }
+    @FXML
     private void acLimpar() {
         txtFldPesquisar.setText("");
         tblView.setItems(

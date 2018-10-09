@@ -1,5 +1,7 @@
 package model;
 
+import static config.Config.df;
+import java.time.LocalDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -21,8 +23,27 @@ public class Professor {
     private Cidade cidade;
     @DBRef
     private Departamento departamento;
+    private LocalDate dataCadastro;
+    private boolean ativo;
 
     public Professor() {
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Professor(String nome, String email, String cpf, Cidade cidade, Departamento departamento, boolean ativo) {
+        setNome( nome);
+        setEmail(email);
+        setCpf(cpf);
+        setCidade(cidade);
+        setDepartamento(departamento);
+        setAtivo(ativo);
     }
 
     public Professor(String nome, String email, String cpf, Cidade cidade, Departamento departamento) {
@@ -31,19 +52,72 @@ public class Professor {
         this.cpf = cpf;
         this.cidade = cidade;
         this.departamento = departamento;
+        setDataCadastro(LocalDate.now());
     }
 
-    public Professor(String nome, String email, String cpf, Cidade cidade) {
+    public Professor(String nome, String email, String cpf, Cidade cidade,String id) {
         this.nome = nome;
         this.email = email;
         this.cpf = cpf;
         this.cidade = cidade;
+        setDataCadastro(LocalDate.now());
+        setId(id);
     }
 
-    public Professor(String nome, String email, String cpf) {
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
+    /**
+     * EXERCICIO 1 DA PROVA
+     *
+     * @return
+     */
+    public String getDataCadastroFormat() {
+        if (dataCadastro != null) {
+            return dataCadastro.format(df);
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * EXERCICIO 1 DA PROVA
+     *
+     * @return
+     */
+    public LocalDate getDataCadastro() {
+        if (dataCadastro != null) {
+            return dataCadastro;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * EXERCICIO 1 DA PROVA
+     *
+     * @return
+     */
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    /**
+     * EXERCICIO 2 DA PROVA
+     *
+     * @return
+     */
+    public boolean isAtivo() {
+       if(ativo==false){
+           return false;
+       }else{
+           return true;
+       }
+    }
+        /**
+         * EXERCICIO 2 DA PROVA
+         *
+         * @return
+         */
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
     public Departamento getDepartamento() {

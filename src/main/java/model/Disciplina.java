@@ -22,6 +22,7 @@ public class Disciplina {
     private boolean semestral;
     @DBRef
     private Turno turno;
+    private int maxAlunos;
 
     public Disciplina() {
     }
@@ -53,7 +54,18 @@ public class Disciplina {
         this.turno = turno;
     }
 
-  
+    public int getMaxAlunos() {
+       return maxAlunos;
+        
+    }
+
+    public void setMaxAlunos(int maxAlunos) {
+        if (maxAlunos > 0) {
+            this.maxAlunos = maxAlunos;
+        } else {
+            this.maxAlunos = 0;
+        }
+    }
 
     public boolean isSemestral() {
 

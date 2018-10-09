@@ -28,7 +28,7 @@ public class PrincipalController implements Initializable {
     Professor professor;
     Cidade cidade;
     Uf uf;
-    Aluno aluno;   
+    Aluno aluno;
     List<Turno> lstTurno = new ArrayList<Turno>();
     List<Departamento> lstDep = new ArrayList<Departamento>();
     List<Aluno> lstAlu = new ArrayList<Aluno>();
@@ -40,6 +40,26 @@ public class PrincipalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+//        Professor professor;
+//        professor=(professorRepository.findByNome("Idomar"));
+//        professor.setDataCadastro(LocalDate.now().minusYears(3*10));
+//        professorRepository.save(professor);
+        
+
+//        lstProf = professorRepository.findAll();
+//        for (Professor a : lstProf) {
+//            a.setAtivo(true);
+//            professorRepository.save(a);
+//        }
+//        professor = professorRepository.findByNome("Muriel");
+//        professor.setAtivo(false);
+//        professorRepository.save(professor);
+
+//lstDisc=disciplinaRepository.findAll();
+//for(Disciplina d: lstDisc){
+//    d.setMaxAlunos(30);
+//    disciplinaRepository.save(d);
+//}
 //        /**
 //         * Encontra as Siglas na tabela uf e cria um link com a cidade
 //         */
@@ -59,7 +79,7 @@ public class PrincipalController implements Initializable {
 //        
 ////        
 ////       
-//        int tamA;
+//        int tamA;;
 //        tamA=10;
 //        String nomes[]=new String[tamA];
 //        
@@ -75,17 +95,17 @@ public class PrincipalController implements Initializable {
 //        nomes[9]="ELias";
 //        
 //        for(int i=0;i<tamA;i++){
-//            alunoRepository.insert(new Aluno(nomes[i],nomes[i]+"@email.com","1"+i*323,LocalDate.now().minusYears(i*2),cidadeRepository.findByNome("Curitiba")));
-////            professorRepository.insert(new Professor(nomes[i],nomes[i]+"@ig.com","9"+i*541, cidadeRepository.findByNome("Palmeira")));
+////            alunoRepository.save(new Aluno(nomes[i]+ " " +nomes[i],nomes[i]+"@email.com","2"+i*423,LocalDate.now().minusYears(i*10),cidadeRepository.findByNome("Pirai")));
+//            professorRepository.save(new Professor(nomes[i],nomes[i]+"@ig.com","9"+i*541, cidadeRepository.findByNome("Palmeira"),(professorRepository.findByNome(nomes[i])).getId()));
 //        }
-     
-//        lstAlu  =   alunoRepository.findAll();
-//        for (Aluno a:lstAlu){
-//            if(a.getDataCadastro()!=null){
+
+//        lstProf  =   professorRepository.findAll();
+//        for (Professor a:lstProf){
+//            if(a.getDataCadastro()==null){
 //            a.setDataCadastro(LocalDate.now());
 //            }
 //            try{
-//                alunoRepository.save(a);
+//                professorRepository.save(a);
 //            }catch(Exception e){
 //                System.out.println("Erro ao cadaastrar");
 //            }
@@ -131,7 +151,6 @@ public class PrincipalController implements Initializable {
 //        System.out.println(df.format(dtTeste));
 //        lstMatricula.add(new Matricula(disciplinaRepository.findByCodigo("123"),70,75,0,2));
 //        lstMatricula.add(new Matricula(disciplinaRepository.findByCodigo("12345"),70,75,0,2));
-
 //        aluno   =   new Aluno("Jussara","email@email.com","21313231",cidadeRepository.findByNome("PORTO AMAZONAS"),lstMatricula);
 //        alunoRepository.save(aluno);
 //        for (Matricula m:lstMatricula){
@@ -141,8 +160,6 @@ public class PrincipalController implements Initializable {
 //            System.out.println("----------------------");
 //            
 //        }
-        
-      
 //uf = new Uf("Acre", "AC");;;;
 //        ufRepository.save(uf);
 //        uf = new Uf("Alagoas", "AL");
@@ -220,7 +237,7 @@ public class PrincipalController implements Initializable {
 //        ufRepository.save(uf);
 //        uf = new Uf("Rio Grande do Norte","RN");
 //        ufRepository.save(uf);
-         /**
+        /**
          * Encontra as Siglas na tabela uf e cria um link com a cidade
          */
 //        uf =  ufRepository.findBySiglaLikeIgnoreCase("PR");;

@@ -56,18 +56,21 @@
                         <TextField fx:id="txtFldHoras" />
                      </children>
                   </VBox>
-                  <VBox fx:id="chckBxSemestral">
+                  <VBox prefHeight="47.0" prefWidth="77.0">
                      <children>
-                        <CheckBox fx:id="chckBxSemestral" mnemonicParsing="false" text="Semestral" />
+                        <Label text="MaxAlunos">
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtFldMaxAlunos" />
                      </children>
-                     <HBox.margin>
-                        <Insets top="15.0" />
-                     </HBox.margin>
                   </VBox>
                </children>
             </HBox>
                 <HBox alignment="BOTTOM_CENTER" spacing="5.0">
                     <children>
+
                         <VBox>
                             <children>
                                 <Label text="Professor" />

@@ -27,7 +27,8 @@
                         </TextField>
                         <MaterialDesignIconView fx:id="btnPesquisar" glyphName="MAGNIFY" onMouseClicked="#acPesquisar" size="1.3em" />
                         <MaterialDesignIconView fx:id="btnLimpar" glyphName="BROOM" onMouseClicked="#acLimpar" size="1.3em" />
-                  <Button mnemonicParsing="false" onAction="#btnFiltrarMaiorClick" text="Filtrar Menor 18" />
+                        <Button mnemonicParsing="false" onAction="#btnFiltrarMaiorClick" text="Filtrar Menor 18" />
+                  <Button mnemonicParsing="false" onAction="#btnFiltrarMaior65AnosClick" text="Filtrar Maior 65 Anos" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -48,6 +49,11 @@
                         <TableColumn maxWidth="150.0" prefWidth="80.0" style="-fx-alignment: TOP_RIGHT;" text="Disciplinas">
                             <cellValueFactory>
                                 <PropertyValueFactory property="disciplinasQtd" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="150.0" prefWidth="80.0" style="-fx-alignment: TOP_RIGHT;" text="Quantidade de Nomes">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="quantidadeDeNomes" />
                             </cellValueFactory>
                         </TableColumn>
                         <TableColumn maxWidth="150.0" prefWidth="100.0" style="-fx-alignment: TOP-RIGHT;" text="Nascimento">

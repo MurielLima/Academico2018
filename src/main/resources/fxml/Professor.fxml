@@ -28,6 +28,8 @@
                         </TextField>
                         <MaterialDesignIconView fx:id="btnPesquisar" glyphName="MAGNIFY" onMouseClicked="#acPesquisar" size="1.3em" />
                         <MaterialDesignIconView fx:id="btnLimpar" glyphName="BROOM" onMouseClicked="#acLimpar" size="1.3em" />
+                  <Button mnemonicParsing="false" onAction="#btnImportJsonClick" text="Importar JSON" />
+                  <Button mnemonicParsing="false" onAction="#btnExportJsonClick" text="Exportar JSON" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -61,22 +63,22 @@
                             <items>
                                 <MenuItem fx:id="mnDisciplinas" mnemonicParsing="false" onAction="#acDisciplinas" text="Ver Disciplinas">
                                     <graphic>
-                                        <MaterialDesignIconView  glyphName="EYE"  size="1.1em" />
+                                        <MaterialDesignIconView glyphName="EYE" size="1.1em" />
                                     </graphic>
                                 </MenuItem>
                                 <MenuItem fx:id="mnIncluir" mnemonicParsing="false" onAction="#acIncluir" text="Incluir">
                                     <graphic>
-                                        <MaterialDesignIconView  glyphName="PLUS"  size="1.1em" />
+                                        <MaterialDesignIconView glyphName="PLUS" size="1.1em" />
                                     </graphic>
                                 </MenuItem>
-                                <MenuItem fx:id="mnAlterar" mnemonicParsing="false" onAction="#acAlterar" text="Alterar" >
+                                <MenuItem fx:id="mnAlterar" mnemonicParsing="false" onAction="#acAlterar" text="Alterar">
                                     <graphic>
-                                        <MaterialDesignIconView  glyphName="PENCIL"  size="1.1em" />
+                                        <MaterialDesignIconView glyphName="PENCIL" size="1.1em" />
                                     </graphic>
                                 </MenuItem>
-                                <MenuItem fx:id="mnExcluir" mnemonicParsing="false" onAction="#acExcluir" text="Excluir" >
+                                <MenuItem fx:id="mnExcluir" mnemonicParsing="false" onAction="#acExcluir" text="Excluir">
                                     <graphic>
-                                        <MaterialDesignIconView  glyphName="DELETE"  size="1.1em" />
+                                        <MaterialDesignIconView glyphName="DELETE" size="1.1em" />
                                     </graphic>
                                 </MenuItem>
                             </items>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DisciplinaAlunosController">
+    <children>
+        <VBox alignment="CENTER" prefHeight="420.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label fx:id="lblNomeDisciplina">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TableView fx:id="tblViewAlunos">
+                    <columns>
+                        <TableColumn prefWidth="75.0" text="RA">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="ra" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="250.0" prefWidth="100.0" text="Aluno">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nome" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <!--               <contextMenu>
+                       <ContextMenu>
+                         <items>
+                           <MenuItem fx:id="mnA" mnemonicParsing="false" onAction="" text="" />
+                         </items>
+                       </ContextMenu>
+                    </contextMenu>-->
+                </TableView>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -57,16 +57,18 @@ public class Aluno {
         this.matriculas = matriculas;
         setDataCadastro(LocalDate.now());
     }
-   public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade
-            ) {
+
+    public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade
+    ) {
         this.nome = nome;
         this.email = email;
         this.ra = ra;
         this.dataNascimento = dataNascimento;
         this.cidade = cidade;
-  
+
         setDataCadastro(LocalDate.now());
     }
+
     public Aluno(String nome, String email, String ra, LocalDate dataNascimento, Cidade cidade,
             List<Matricula> matriculas) {
         this.nome = nome;
@@ -77,7 +79,14 @@ public class Aluno {
         this.matriculas = matriculas;
         setDataCadastro(LocalDate.now());
     }
-
+    /**
+     * EXERCICIO 2 DA PROVA
+     * @return 
+     */
+    public int getQuantidadeDeNomes(){
+        int quantidade=0;
+        return quantidade;
+    }
     public int getIdade() {
         LocalDate today = LocalDate.now();
 

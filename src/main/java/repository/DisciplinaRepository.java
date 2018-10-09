@@ -15,6 +15,7 @@ public interface DisciplinaRepository extends MongoRepository<Disciplina, String
     public void deleteByCodigo(String codigo);
     
 
+    public Disciplina findByNome(String nome);
     public List<Disciplina> findByNomeLikeIgnoreCase(String nome);
     
 
