@@ -42,7 +42,7 @@
                                 <PropertyValueFactory property="cpf" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="350.0" prefWidth="350.0" text="Nome">
+                        <TableColumn maxWidth="350.0" prefWidth="350.0" text="%lbl.nome.txt">
                             <cellValueFactory>
                                 <PropertyValueFactory property="nome" />
                             </cellValueFactory>

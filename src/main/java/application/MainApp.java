@@ -1,5 +1,6 @@
 package application;
 
+import static config.Config.i18n;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -14,12 +15,12 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Principal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Principal.fxml"),i18n);
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
         
-        stage.setTitle("Acadêmico - 2018");
+        stage.setTitle(i18n.getString("lbl.titulo.txt"));
         stage.setScene(scene);
         stage.show();
         scene.getWindow().setOnCloseRequest((WindowEvent ev) -> {
